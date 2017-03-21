@@ -2,6 +2,7 @@
 
 // import axios;
 import './input.js';
+import './scrollwatch.js';
 
 // // DOM Objects
 // let emailBtn = document.getElementById('email-button');

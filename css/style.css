@@ -104,7 +104,7 @@ body {
   -webkit-box-shadow: inset 0 0 10px #000000;
   box-shadow: inset 0 0 9px #15304c;
   transition: all .2s linear;  
-  }
+}
 
 .logo-scrolled {
   width: 50px;
@@ -118,7 +118,19 @@ body {
   -webkit-box-shadow: inset 0 0 10px #000000;
   box-shadow: inset 0 0 9px #15304c;
   transition: all .2s linear;  
-  }  
+}
+
+.footer-logo {
+  width: 50px;
+  height: 37.5px;
+  border-radius: 57% 57% 50% 50% / 90% 90% 40% 40%;
+  -webkit-border-radius: 57% 57% 50% 50% / 90% 90% 40% 40%;
+  box-shadow: 8px 7px 20px 0px rgba(0, 0, 0, 0.28);
+  background: linear-gradient(-65deg, #45bde1, #d64646);
+  -moz-box-shadow: inset 0 0 10px #000000;
+  -webkit-box-shadow: inset 0 0 10px #000000;
+  box-shadow: inset 0 0 9px #15304c;
+}  
 
 h3.learn-more {
   border: 1px solid rgba(255, 255, 255, 0.61);
@@ -150,6 +162,40 @@ h3.learn-more:active {
 }
 
 h3.learn-more:focus {
+  outline: none;
+}
+
+h3.learn-more-scrolled {
+  border: 1px solid rgba(255, 255, 255, 0.61);
+  border-radius: 6px;
+  padding: 11px 24px;
+  position: absolute;
+  right: 9%;
+  font-size: 1em;
+  background: #e3516c;
+  transition: background-color 0.3s;
+  -webkit-transition: background-color 0.3s;
+  -moz-transition: background-color 0.3s;
+  margin: 0;
+  color: white;
+  font-weight: 400;
+  text-transform: uppercase;
+  letter-spacing: .1em;
+}
+
+h3.learn-more-scrolled:hover {
+  background: rgba(238, 238, 238, 0.22);
+  transition: background-color 0.3s;
+  -webkit-transition: background-color 0.3s;
+  -moz-transition: background-color 0.3s;
+  -o-transition:background-color 0.3s;
+}
+
+h3.learn-more-scrolled:active {
+  background: rgba(238, 238, 238, 0.32);
+}
+
+h3.learn-more-scrolled:focus {
   outline: none;
 }
 
@@ -259,6 +305,7 @@ i.chevron-down:hover {
   padding: 5% 21%;
   box-sizing: border-box;
   text-align: center;
+  background: linear-gradient(-19deg, rgba(69, 189, 225, 0.33), rgba(214, 70, 70, 0.25));
 }
 
 .description-section-text {
@@ -292,6 +339,24 @@ i.chevron-down:hover {
   max-height: 800px;
   position: relative;
   z-index: -10;
+}
+
+#footer {
+  width: 100%;
+  height: 90px;
+  padding: 16px 9%;
+  box-sizing: border-box;
+  background: #333333;
+}
+
+.footer-holder {
+  padding: 9px 0 9px 0px;
+  display: flex;
+  align-items: center;
+}
+
+.copyright {
+  margin: 0 auto;
 }
 
 

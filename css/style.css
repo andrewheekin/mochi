@@ -37,15 +37,16 @@ body {
 }
 
 .nav-holder {
-  padding: 45px 0 20px 0px;
+  padding: 53px 0 20px 0px;
   border-bottom: 1px solid rgba(128, 128, 128, 0.65);
   display: flex;
   align-items: center;
   transition: padding .2s linear;
+  text-shadow: 0 0 17px black;
 }
 
 .nav-holder-scrolled {
-  padding: 5px 0 5px 0px;
+  padding: 9px 0 9px 0px;
   display: flex;
   align-items: center;
   transition: padding .2s linear;
@@ -53,10 +54,42 @@ body {
 
 .mochi {
   color: white;
+  font-size: 2.1em;
+  margin-left: 8px;
+  letter-spacing: .04em;
+  transition: font-size .2s linear;
+}
+
+.mochi-scrolled {
+  color: white;
   font-size: 1.7em;
   margin-left: 8px;
   text-shadow: black;
   box-shadow: black;
+  letter-spacing: .04em;
+  transition: font-size .2s linear;
+}
+
+.mochi-lightbox {
+  color: white;
+  font-family: 'Quicksand', sans-serif;
+  text-transform: uppercase;
+  margin-left: 4px;
+  font-size: .9em;
+  position: relative;
+  top: 7px;
+  transition: font-size .2s linear;  
+}
+
+.mochi-lightbox-scrolled {
+  color: white;
+  font-family: 'Quicksand', sans-serif;
+  text-transform: uppercase;
+  margin-left: 4px;
+  font-size: .8em;
+  position: relative;
+  top: 4px;
+  transition: font-size .2s linear;  
 }
 
 .logo {
@@ -65,12 +98,27 @@ body {
   border-radius: 57% 57% 50% 50% / 90% 90% 40% 40%;
   -webkit-border-radius: 57% 57% 50% 50% / 90% 90% 40% 40%;
   box-shadow: 8px 7px 20px 0px rgba(0, 0, 0, 0.28);
-  background: linear-gradient(-65deg, #4584e1, #d64646);
+  background: linear-gradient(-65deg, #45bde1, #d64646);
   /*background: linear-gradient( -65deg, #d0f0c0, green );*/ /*green color scheme*/
   -moz-box-shadow: inset 0 0 10px #000000;
   -webkit-box-shadow: inset 0 0 10px #000000;
   box-shadow: inset 0 0 9px #15304c;
+  transition: all .2s linear;  
   }
+
+.logo-scrolled {
+  width: 50px;
+  height: 37.5px;
+  border-radius: 57% 57% 50% 50% / 90% 90% 40% 40%;
+  -webkit-border-radius: 57% 57% 50% 50% / 90% 90% 40% 40%;
+  box-shadow: 8px 7px 20px 0px rgba(0, 0, 0, 0.28);
+  background: linear-gradient(-65deg, #45bde1, #d64646);
+  /*background: linear-gradient( -65deg, #d0f0c0, green );*/ /*green color scheme*/
+  -moz-box-shadow: inset 0 0 10px #000000;
+  -webkit-box-shadow: inset 0 0 10px #000000;
+  box-shadow: inset 0 0 9px #15304c;
+  transition: all .2s linear;  
+  }  
 
 h3.learn-more {
   border: 1px solid rgba(255, 255, 255, 0.61);
@@ -125,6 +173,7 @@ h3.nav-item:hover {
 
 .main-txt {
   text-align: center;
+  width: 100%;
   position: absolute;
   top: 43%;
   left: 50%;
@@ -137,29 +186,27 @@ h3.nav-item:hover {
 
 button.demo-button {
   height: 50px;
-  width: 200px;
+  width: 210px;
   border-radius: 6px;
   /*background: #92dc6e;*/ /*green color scheme*/
-  background: #ba425e;
+  background: #e3516c;
   border: none;
   font-size: 0.6em;
-  margin: 30px;
+  margin: 35px;
   color: white;
   font-family: 'Cabin', sans-serif;
   text-transform: uppercase;
   letter-spacing: .1em;
-  opacity: 0.9;
+  box-shadow: 1px black;
 }
 
 button.demo-button:hover {
-  opacity: 1;
-  background: #e3516c;
+  background: #e5627a;
 }
 
 button.demo-button:active {
-  opacity: 1;
   /*background: #b1e697;*/ /*green color scheme*/
-  background: #e5627a;
+  background: #e76f85;
 }
 
 button.demo-button:focus {
@@ -169,33 +216,82 @@ button.demo-button:focus {
 h1.tagline {
   margin: 10px;
   font-weight: 400;
+  font-size: 2.3em;
+  letter-spacing: .03em;
+  text-shadow: 0 0 17px black;
   animation: slidedown 1s;
   -moz-animation: slidedown 1s;
   -webkit-animation: slidedown 1s;
   animation-fill-mode: forwards; /*makes the object keep the new position*/
 }
 
+h3.slogan-description {
+  font-family: 'Quicksand', sans-serif;
+  margin: 0 auto;
+  font-weight: 400;
+  font-size: .9em;
+  text-shadow: 0 0 5px black;
+  width: 50%;
+  /* background: rgba(128, 128, 128, 0.3); */
+  border-radius: 5px;
+}
+
 i.chevron-down {
   color: white;
   font-size: 1.9em;
   position: absolute;
+  text-decoration: none;
   top: 87%;
   left: 50%;
   transform: translate(-50%, -50%);
   animation: bounceUpDown 1s linear infinite;
   -moz-animation: bounceUpDown 1s linear infinite;
   -webkit-animation: bounceUpDown 1s linear infinite;
-  animation-delay: 2.5s;
-  -webkit-animation-delay: 2.5s;
-  -moz-animation-delay: 2.5s;
 }
 
 i.chevron-down:hover {
   opacity: 0.7;
 }
 
-.test {
-  color: #b19e9f;
+#description-section {
+  width: 100%;
+  height: 250px;
+  padding: 5% 21%;
+  box-sizing: border-box;
+  text-align: center;
+}
+
+.description-section-text {
+  font-size: 2em;
+}
+
+#lightbox-example {
+  width: 100%;
+  height: 500px;
+  display: flex;
+  box-sizing: border-box;
+  background: #eee;
+}
+
+.lightbox-example-pane {
+  /* order: 1; */
+  margin: 50px;
+  min-width: 300px;
+  width: 30%;
+  background: white;
+}
+
+#signup {
+  width: 100%;
+  height: 800px;
+  background: linear-gradient(-19deg, rgba(69, 189, 225, 0.72), rgba(214, 70, 70, 0.45));
+}
+
+#signup-img {
+  width: 100%;
+  max-height: 800px;
+  position: relative;
+  z-index: -10;
 }
 
 

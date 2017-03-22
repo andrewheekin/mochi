@@ -7,7 +7,7 @@
     <!-- <link rel="stylesheet" href="./build/css/bundle.css"> -->
     <link rel="stylesheet" href="./css/style.css">
     <link rel="stylesheet" href="./css/font-awesome.css">
-    <link href="https://fonts.googleapis.com/css?family=Cabin:400,500" rel="stylesheet">    
+    <link href="https://fonts.googleapis.com/css?family=Cabin:400,500|Quicksand:300" rel="stylesheet"> 
     <link rel="shortcut icon" href="./favicon.ico" type="image/x-icon">
     <title>Mochi - customer alerts</title>
   </head>
@@ -15,21 +15,34 @@
     <div class="main-img">
       <nav id="navbar" class="navbar">
         <div id="nav-holder" class="nav-holder">
-          <div class="logo"> </div>
-          <div class="mochi">mochi</div>
+          <div id="logo" class="logo"> </div>
+          <div id="mochi" class="mochi">mochi</div>
+          <div id="mochi-lightbox" class="mochi-lightbox">lightbox</div>
           <h3 class="nav-item" style="right:29%">About</h3>
           <h3 class="nav-item" style="right:21%">Pricing</h3>
           <h3 class="learn-more">Get a demo</h3>
         </div>
       </nav>
       <div class="main-txt">
-        <h1 class="tagline">Keep customers up-to-date</h1>
+        <h1 class="tagline">Keep customers up-to-date.</h1>
+        <!-- <h3 class="slogan-description">Make announcements, update specials on your website as often as you want with a mochi lightbox</h3> -->
         <button class="demo-button">Try it out</button>
       </div>
-      <i class="icon-chevron-down chevron-down"></i>
+      <a href="#description-section">
+        <i class="icon-chevron-down chevron-down"></i>
+      </a>
     </div>  
-    <h1>Hola</h1>
-    <div class="test">test the css</div>
+    <div id="description-section">
+      <div class="description-section-text">Make announcements, update specials on your website as often as you want with a mochi lightbox</div>
+    </div>
+    <div id="lightbox-example">
+      <div class="lightbox-example-pane">1</div>
+      <div class="lightbox-example-pane">2</div>
+      <div class="lightbox-example-pane">3</div>
+    </div>
+    <div id="signup">
+      <img id="signup-img" src="../img/signup.jpg">
+    </div>    
   </body>
   <!-- <script src="./build/js/vendor.js"></script> -->
   <script src="./build/js/bundle.js"></script>

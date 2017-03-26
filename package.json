@@ -6,7 +6,7 @@
   "scripts": {
     "start": "http-server",
     "build": "WEBPACK_ENV=build webpack",
-    "dev": "WEBPACK_ENV=dev webpack --watch --progress --colors --hot --inline",
+    "dev": "WEBPACK_ENV=dev webpack --watch --progress --colors --hot",
     "dev-server": "WEBPACK_ENV=dev webpack-dev-server --watch --progress --colors --hot --inline"
   },
   "repository": {

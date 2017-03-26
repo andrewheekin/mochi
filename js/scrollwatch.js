@@ -4,7 +4,7 @@ let navbar = document.getElementById('navbar');
 let navHolder = document.getElementById('nav-holder');
 let logo = document.getElementById('logo');
 let mochi = document.getElementById('mochi');
-let mochiBox = document.getElementById('mochi-lightbox');
+let mochiBox = document.getElementById('mochi-popup');
 let learnMore = document.getElementById('learn-more');
 
 
@@ -25,14 +25,14 @@ function checkNavbar() {
     navHolder.className = 'nav-holder-scrolled';
     logo.className = 'logo-scrolled';
     mochi.className = 'mochi-scrolled';
-    mochiBox.className = 'mochi-lightbox-scrolled';
+    mochiBox.className = 'mochi-popup-scrolled';
   }
   else if (window.scrollY < 20) {
     navbar.className = 'navbar';
     navHolder.className = 'nav-holder';
     logo.className = 'logo';
     mochi.className = 'mochi';
-    mochiBox.className = 'mochi-lightbox';
+    mochiBox.className = 'mochi-popup';
   }
   return;
 }

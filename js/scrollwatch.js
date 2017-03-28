@@ -1,4 +1,7 @@
+'use strict';
+
 import throttle from 'lodash/throttle';
+import { $el, $on } from './util.js';
 
 let navbar = document.getElementById('navbar');
 let navHolder = document.getElementById('nav-holder');
@@ -8,18 +11,20 @@ let mochiBox = document.getElementById('mochi-popup');
 let learnMore = document.getElementById('learn-more');
 
 
-// watch window scroll height and add/remove scrolled/unscrolled classes
-document.addEventListener('scroll', throttle(() => {
-  checkNavbar();
-  checkLearnMore();
-}, 100));
+// watch window scroll height and add/remove scrolled/unscrolled classes, throttle the scroll event
+$on('scroll', throttle(() => checkScroll(), 100));
+$on('load', () => checkScroll());
 
-window.addEventListener('load', () => {
-  checkNavbar();
-  checkLearnMore();
-});
+function checkScroll() {
+  // if scrolled past main page, make the "learn more" box colored fusia
+  if (window.scrollY >= 700) {
+    learnMore.className = 'learn-more-scrolled'
+  }
+  else if (window.scrollY < 700) {
+    learnMore.className = 'learn-more'
+  }
 
-function checkNavbar() {
+  // if scrolled past 20px, change navbar
   if (window.scrollY >= 20) {
     navbar.className = 'navbar-scrolled';
     navHolder.className = 'nav-holder-scrolled';
@@ -33,17 +38,6 @@ function checkNavbar() {
     logo.className = 'logo';
     mochi.className = 'mochi';
     mochiBox.className = 'mochi-popup';
-  }
-  return;
-}
-
-// if scrolled past main page, make the "learn more" box colored fusia
-function checkLearnMore() {
-  if (window.scrollY >= 700) {
-    learnMore.className = 'learn-more-scrolled'
-  }
-  else if (window.scrollY < 700) {
-    learnMore.className = 'learn-more'
   }
   return;
 }

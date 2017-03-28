@@ -1,67 +1,85 @@
 'use strict';
 
-// import axios;
-import './input.js';
+import axios from 'axios';
 import './scrollwatch.js';
-
-// // DOM Objects
-// let emailBtn = document.getElementById('email-button');
-// let emailIpt = document.getElementById('email-input');
-// let emailErr = document.getElementById('email-error');
-
-// // "get started" button clicked
-// emailBtn.addEventListener('click', () => {
-//   submitEmail();
-// });
-
-// // if the input box has text, hide the "no email" error
-// emailIpt.addEventListener('input', () => {
-//   if (emailIpt.value) emailErr.innerHTML = "";
-// });
-
-// // regex to check valid email
-// function validateEmail() {
-//   const regex = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
-//   return regex.test(emailIpt.value);
-// }
-
-// function saveEmail() {
-//   // XMLHttpRequest POST
-//   var http = new XMLHttpRequest();
-//   var url = "https://v392r778gl.execute-api.us-east-1.amazonaws.com/prod/email";
-//   var params = JSON.stringify({email: emailIpt.value});
-//   http.open("POST", url, true);
-//   http.setRequestHeader("Content-type", "application/json");
-//   http.onreadystatechange = () => {//Call a function when the state changes.
-//     if(http.readyState == 4 && http.status == 200) {
-//       emailErr.innerHTML = "thanks!"
-//       // TODO: Fix this animation, move it to the CSS
-//       emailErr.style = "color: green; animation: fadein .5s; -moz-animation: fadein .5s; -webkit-animation: fadein .5s;";            
-//     }
-//   }
-//   http.send(params);        
-// }
-
-// let submitEmail = () => {
-//   if (emailIpt.value) {
-//     if (validateEmail()) {
-//       // valid email was entered. Send email to backend
-//       saveEmail();
-//     }
-//     else {
-//       emailErr.innerHTML = "please enter a valid email";
-//       // TODO: Fix this animation, move it to the CSS
-//       emailErr.style = "color: red; animation: fadein .5s; -moz-animation: fadein .5s; -webkit-animation: fadein .5s;";
-//     }
-//   }
-//   else {
-//     emailErr.innerHTML = "please enter an email";
-//     // TODO: Fix this animation, move it to the CSS
-//     emailErr.style = "color: red; animation: fadein .5s; -moz-animation: fadein .5s; -webkit-animation: fadein .5s;";
-//   }
-// };
+import { $el, $on } from './util.js';
 
 
+// click submit
+$on('click', () => saveFormInfo(), $el('submit-button'));
 
-// WEBPACK FOOTER //
-// ./js/scripts.js
+// change the label and bottom border color back to white when text is entered
+$on('input', () => {
+  $el('name-wrapper').style.borderBottomColor = 'white';
+  $el('name-wrapper').style.color = 'white';
+}, $el('name-wrapper'));
+
+// change the label and bottom border color back to white when text is entered
+$on('input', () => {
+  $el('email-wrapper').style.borderBottomColor = 'white';
+  $el('email-wrapper').style.color = 'white';
+}, $el('email-wrapper'));
+
+// change the label and bottom border color back to white when text is entered
+$on('input', () => {
+  $el('restaurant-wrapper').style.borderBottomColor = 'white';
+  $el('restaurant-wrapper').style.color = 'white';
+}, $el('restaurant-wrapper'));
+
+function saveFormInfo() {
+  let name = $el('name').value.trim();
+  let email = $el('email').value.trim();
+  let restaurant = $el('restaurant').value.trim();
+  let phone = $el('phone').value.trim();
+  let howHelp = $el('howHelp').value.trim();
+
+  const emailRegex = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+  let validEmail = emailRegex.test(email) ? true : false;
+
+  if (!name || !validEmail || !restaurant) {
+    if (!name) {
+      $el('name-wrapper').style.borderBottomColor = '#d64646';
+      $el('name-wrapper').style.color = '#d64646';
+    }
+    if (!validEmail) {
+      $el('email-wrapper').style.borderBottomColor = '#d64646';
+      $el('email-wrapper').style.color = '#d64646';
+    }
+    if (!restaurant) {
+      $el('restaurant-wrapper').style.borderBottomColor = '#d64646';
+      $el('restaurant-wrapper').style.color = '#d64646';
+    }
+    return;
+  }
+
+  axios.post('https://v392r778gl.execute-api.us-east-1.amazonaws.com/prod/email', {
+    name: name,
+    email: email,
+    restaurant: restaurant,
+    phone: phone,
+    howHelp: howHelp
+  })
+  .then(resp => console.log(resp));
+
+  // clear the form 
+  $el('name').value = '';
+  $el('email').value = '';
+  $el('restaurant').value = '';
+  $el('phone').value = '';
+  $el('howHelp').value = '';
+
+  // display the modal
+  signupModal.style.display = 'block';
+}
+
+
+// show signup modal
+let signupModal = $el('signupModal');
+let span = document.getElementsByClassName('close')[0];
+span.onclick = () => {signupModal.style.display = 'none'};
+window.onclick = (e) => {
+  if (e.target == signupModal) {
+    signupModal.style.display = 'none';
+  }
+}
+

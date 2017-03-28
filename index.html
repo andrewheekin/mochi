@@ -20,7 +20,9 @@
           <div id="mochi-popup" class="mochi-popup">popups</div>
           <h3 class="nav-item" style="right:29%">About</h3>
           <h3 class="nav-item" style="right:21%">Pricing</h3>
-          <h3 id="learn-more" class="learn-more">Get a demo</h3>
+          <a class="learn-more" href="#signup">
+            <h3 id="learn-more" class="learn-more">Get a demo</h3>
+          </a>
         </div>
       </nav>
       <div class="main-txt">
@@ -33,7 +35,7 @@
       </a>
     </div>  
     <div id="description-section">
-      <div class="description-section-text">Make announcements and update specials on your website as often as you want with a mochi a mochi popup.</div>
+      <div class="description-section-text">Make announcements and update specials on your website as often as you want with a mochi popup.</div>
     </div>
     <div id="popup-example">
       <div class="popup-example-pane">1</div>
@@ -44,30 +46,32 @@
       <img id="signup-img" src="../img/signup.jpg">
       <div class="signup-container">
         <div class="signup-title">Let's chat.</div>
-        <div class="signup-input">
-          <div class="signup-info">
-            <div class="signup-field">
-              <label for="name">Name:<sup>*</sup></label>
-              <input type="text" id="name">
+        <form>
+          <div class="signup-input">
+            <div class="signup-info">
+              <div class="signup-field" id="name-wrapper">
+                <label for="name">Name:<sup>*</sup></label>
+                <input type="text" id="name">
+              </div>
+              <div class="signup-field" id="email-wrapper">
+                <label for="email">Email:<sup>*</sup></label>
+                <input type="email" id="email">
+              </div>
+              <div class="signup-field" id="restaurant-wrapper">
+                <label for="restaurant">Restaurant:<sup>*</sup></label>
+                <input type="text" id="restaurant">
+              </div>
+              <div class="signup-field">
+                <label for="phone">Phone:</label>
+                <input type="tel" id="phone">
+              </div>                        
             </div>
-            <div class="signup-field">
-              <label for="email">Email:<sup>*</sup></label>
-              <input type="text" id="email">
+            <div class="signup-textarea">
+              <textarea id="howHelp" placeholder="How can we help? (optional)"></textarea>
             </div>
-            <div class="signup-field">
-              <label for="restaurant">Restaurant:<sup>*</sup></label>
-              <input type="text" id="restaurant">
-            </div>
-            <div class="signup-field">
-              <label for="phone">Phone:</label>
-              <input type="text" id="phone">
-            </div>                        
           </div>
-          <div class="signup-textarea">
-            <textarea placeholder="How can we help? (optional)"></textarea>
-          </div>
-        </div>
-        <h3 class="submit-button">Submit</h3>
+          <h3 id="submit-button">Submit</h3>
+        </form>
       </div>
     </div>
     <div id="footer">
@@ -75,9 +79,19 @@
         <div class="footer-logo"></div>
         <div class="mochi-scrolled">mochi</div>
         <div class="mochi-popup-scrolled">popups</div>
-        <div class="copyright">Mochipopups.com | © 2017 Mochi Popups. All Rights Reserved.</div>
+        <div class="copyright">Mochipopups.com | &copy; 2017 Mochi Popups. All Rights Reserved.</div>
       </div>
-    </div>   
+    </div> 
+
+    <!-- signup modal -->
+    <div id="signupModal" class="modal">
+      <div class="modal-content">
+        <span class="close">&times;</span>
+        <h3>Thanks!</h3>
+      </div>
+    </div>
+    <!-- end signup modal -->
+
   </body>
   <!-- <script src="./build/js/vendor.js"></script> -->
   <script src="./build/js/bundle.js"></script>

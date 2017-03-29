@@ -21,6 +21,7 @@
   "homepage": "https://github.com/andrewheekin/mochi#readme",
   "dependencies": {
     "axios": "^0.15.3",
+    "jquery": "^3.2.1",
     "lodash": "^4.17.4"
   },
   "devDependencies": {

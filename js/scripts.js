@@ -1,7 +1,8 @@
 'use strict';
 
 import axios from 'axios';
-import './scrollwatch.js';
+import './scrollWatch';
+import './smoothScroll';
 import { $el, $on } from './util.js';
 
 

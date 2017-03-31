@@ -1,14 +1,14 @@
 'use strict';
 
 import throttle from 'lodash/throttle';
-import { $el, $on } from './util.js';
+import { $on, $id } from './util.js';
 
-let navbar = document.getElementById('navbar');
-let navHolder = document.getElementById('nav-holder');
-let logo = document.getElementById('logo');
-let mochi = document.getElementById('mochi');
-let mochiBox = document.getElementById('mochi-popup');
-let learnMore = document.getElementById('learn-more');
+let navbar = $id('navbar');
+let navHolder = $id('nav-holder');
+let logo = $id('logo');
+let mochi = $id('mochi');
+let mochiBox = $id('mochi-popup');
+let learnMore = $id('learn-more');
 
 
 // watch window scroll height and add/remove scrolled/unscrolled classes, throttle the scroll event

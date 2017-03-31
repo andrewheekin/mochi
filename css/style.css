@@ -215,6 +215,11 @@ h3.learn-more-scrolled:focus {
   outline: none;
 }
 
+a.nav-item {
+  position: absolute;
+  text-decoration: none;
+}
+
 h3.nav-item {
   padding: 11px 24px;
   font-size: .9em;
@@ -226,7 +231,6 @@ h3.nav-item {
   font-weight: 400;
   text-transform: uppercase;
   letter-spacing: .1em;
-  position: absolute;
   user-select: none;
   -webkit-user-select: none;
   cursor: pointer;
@@ -249,6 +253,10 @@ h3.nav-item:hover {
   border-radius: 7px;
   user-select: none;
   -webkit-user-select: none;
+}
+
+a.demo-button {
+  text-decoration: none;
 }
 
 button.demo-button {
@@ -323,8 +331,8 @@ i.chevron-down:hover {
 
 #description-section {
   width: 100%;
-  height: 250px;
-  padding: 5% 21%;
+  height: 350px;
+  padding: 100px 21%;
   box-sizing: border-box;
   text-align: center;
   background: linear-gradient(-19deg, rgba(69, 189, 225, 0.33), rgba(214, 70, 70, 0.25));
@@ -337,29 +345,23 @@ i.chevron-down:hover {
 
 #popup-example {
   width: 100%;
-  height: 500px;
+  height: 560px;
   display: flex;
   box-sizing: border-box;
-  background: #eee;
-}
-
-.popup-example-pane {
-  /* order: 1; */
-  margin: 50px;
-  min-width: 300px;
-  width: 30%;
-  background: white;
+  background: #999;
+  position: relative;
+  justify-content: center;
 }
 
 #signup {
   width: 100%;
-  height: 740px;
+  height: 700px;
   background: linear-gradient(-19deg, rgba(69, 189, 225, 0.72), rgba(214, 70, 70, 0.45));
 }
 
 #signup-img {
   width: 100%;
-  max-height: 800px;
+  max-height: 790px;
   position: absolute;
   z-index: -10;
 }
@@ -507,11 +509,14 @@ h3#submit-button:focus {
   margin: 0 auto;
 }
 
+
+/*MODAL*/
+
 .modal {
   display: none;
   position: fixed;
   z-index: 11;
-  padding-top: 100px;
+  padding-top: 200px;
   left: 0;
   top: 0;
   width: 100%;
@@ -523,32 +528,115 @@ h3#submit-button:focus {
 
 .modal-content {
   position: relative;
-  background-color: #fefefe;
+  background-color: rgba(255, 106, 133, 0.95);
   margin: auto;
   padding: 0;
-  border: 1px solid #888;
-  width: 80%;
+  font-size: 1.3em;
+  letter-spacing: .1em;
+  color: white;
+  border-radius: 4px;
+  width: 26%;
+  min-width: 300px;
+  height: 180px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2),0 6px 20px 0 rgba(0,0,0,0.19);
   -webkit-animation-name: showmodal;
   -webkit-animation-duration: 0.4s;
   animation-name: showmodal;
-  animation-duration: 0.4s
+  animation-duration: 0.4s;
 }
 
-.close {
+#close-modal {
     color: white;
-    float: right;
+    position: absolute;
+    top: 5px;
+    right: 20px;
     font-size: 28px;
-    font-weight: bold;
 }
 
-.close:hover,
-.close:focus {
-    color: #000;
+#close-modal:hover,
+#close-modal:focus {
+    opacity: 0.9;
     text-decoration: none;
     cursor: pointer;
 }
 
+/*END MODAL*/
+
+
+/*SLIDE SHOW*/
+
+.mySlides {
+  display: none
+}
+
+/* Slideshow container */
+#slideshow-container {
+  max-width: 1000px;
+  position: relative;
+  margin: auto;
+}
+
+/* Next & previous buttons */
+#prev, #next {
+  cursor: pointer;
+  position: absolute;
+  top: 50%;
+  width: auto;
+  padding: 16px;
+  margin-top: -22px;
+  color: white;
+  font-weight: bold;
+  font-size: 18px;
+  transition: 0.6s ease;
+  border-radius: 0 3px 3px 0;
+  user-select: none;
+  -webkit-user-select: none;  
+}
+
+/* Position the "next button" to the right */
+#next {
+  right: 0;
+  border-radius: 3px 0 0 3px;
+}
+
+/* On hover, add a black background color with a little bit see-through */
+#prev:hover, #next:hover {
+  background-color: rgba(0,0,0,0.8);
+}
+
+/* The dots/bullets/indicators */
+.dot {
+  cursor:pointer;
+  height: 13px;
+  width: 13px;
+  margin: 0 2px;
+  background-color: #bbb;
+  border-radius: 50%;
+  display: inline-block;
+  transition: background-color 0.6s ease;
+}
+
+.active, .dot:hover {
+  background-color: #717171;
+}
+
+.dot-group {
+  position: absolute;
+  bottom: 31px;
+}
+
+/* Fading animation */
+.fade {
+  -webkit-animation-name: fade;
+  -webkit-animation-duration: 1.5s;
+  animation-name: fade;
+  animation-duration: 1.5s;
+}
+
+/*END SLIDESHOW*/
 
 
 ##### ANIMATIONS #####
@@ -566,3 +654,6 @@ h3#submit-button:focus {
 /*modal appears*/
 @-webkit-keyframes showmodal {from {top:-50px; opacity:0} to {top:0; opacity:1}}
 @keyframes showmodal {from {top:-50px; opacity:0} to {top:0; opacity:1}}
+
+@-webkit-keyframes fade {from {opacity: .4} to {opacity: 1}}
+@keyframes fade {from {opacity: .4} to {opacity: 1}}

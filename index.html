@@ -18,8 +18,12 @@
           <div id="logo" class="logo"></div>
           <div id="mochi" class="mochi">mochi</div>
           <div id="mochi-popup" class="mochi-popup">popups</div>
-          <h3 class="nav-item" style="right:29%">About</h3>
-          <h3 class="nav-item" style="right:21%">Pricing</h3>
+          <a class="nav-item" style="right:29%" href="#description-section">
+            <h3 class="nav-item">About</h3>
+          </a>
+          <a class="nav-item" style="right:21%" href="#">
+            <h3 class="nav-item">Pricing</h3>
+          </a>
           <a class="learn-more" href="#signup">
             <h3 id="learn-more" class="learn-more">Get a demo</h3>
           </a>
@@ -28,7 +32,9 @@
       <div class="main-txt">
         <h1 class="tagline">Keep customers up-to-date.</h1>
         <!-- <h3 class="slogan-description">Make announcements, update specials on your website as often as you want with a mochi popup</h3> -->
-        <button class="demo-button">Try it out</button>
+        <a class="demo-button" href="#popup-example">
+          <button class="demo-button">Try it out</button>
+        </a>
       </div>
       <a href="#description-section">
         <i class="icon-chevron-down chevron-down"></i>
@@ -37,11 +43,28 @@
     <div id="description-section">
       <div class="description-section-text">Make announcements and update specials on your website as often as you want with a mochi popup.</div>
     </div>
+
     <div id="popup-example">
-      <div class="popup-example-pane">1</div>
-      <div class="popup-example-pane">2</div>
-      <div class="popup-example-pane">3</div>
+      <div id="slideshow-container">
+        <div class="mySlides fade">
+          <img src="http://placehold.it/2400x1000" style="width:100%">
+        </div>
+        <div class="mySlides fade">
+          <img src="http://placehold.it/2400x1000" style="width:100%">
+        </div>
+        <div class="mySlides fade">
+          <img src="http://placehold.it/2400x1000" style="width:100%">
+        </div>
+        <a id="prev">&#10094;</a>
+        <a id="next">&#10095;</a>
+      </div>
+      <div class="dot-group">
+        <span id="dot1" class="dot"></span> 
+        <span id="dot2" class="dot"></span> 
+        <span id="dot3" class="dot"></span>
+      </div>
     </div>
+
     <div id="signup">
       <img id="signup-img" src="../img/signup.jpg">
       <div class="signup-container">
@@ -74,6 +97,7 @@
         </form>
       </div>
     </div>
+
     <div id="footer">
       <div class="footer-holder">
         <div class="footer-logo"></div>
@@ -84,10 +108,10 @@
     </div> 
 
     <!-- signup modal -->
-    <div id="signupModal" class="modal">
+    <div id="signup-modal" class="modal">
       <div class="modal-content">
-        <span class="close">&times;</span>
-        <h3>Thanks!</h3>
+        <span id="close-modal">&times;</span>
+        <p>Thanks!</p>
       </div>
     </div>
     <!-- end signup modal -->

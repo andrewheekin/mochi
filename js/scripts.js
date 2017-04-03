@@ -64,7 +64,7 @@ function saveFormInfo() {
     phone: phone,
     howHelp: howHelp
   })
-  .then(resp => console.log(resp));
+  // .then(resp => console.log(resp));
 
   // clear the form 
   $id('name').value = '';

@@ -13,9 +13,9 @@ $id('slideshow-container').onmouseout = () => paused = false;
 
 let slideIndex = 1;
 showSlides(slideIndex);
-let si = setInterval(() => {
-  if (!paused) showSlides(slideIndex += 1)
-}, 3000);
+// let si = setInterval(() => {
+//   if (!paused) showSlides(slideIndex += 1)
+// }, 3000);
 
 function plusSlides(n) {
   showSlides(slideIndex += n);
@@ -27,7 +27,7 @@ function currentSlide(n) {
 
 function showSlides(n) {
   // [].slice.call(HTMLcollection) will convert an HTML collection to a JS array
-  let slides = [].slice.call($cl('mySlides'));
+  let slides = [].slice.call($cl('my-slides'));
   let dots = [].slice.call($cl('dot'));
 
   if (n > slides.length) slideIndex = 1;    

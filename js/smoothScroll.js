@@ -12,7 +12,7 @@ $(document).ready(() => {
 
       $('html, body').animate({
         scrollTop: $(hash).offset().top - 55.5 // top minus navbar height
-      }, 600, () => {
+      }, 600, "swing",  () => {
            window.location.hash = hash;
       });
     }

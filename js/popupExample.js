@@ -13,9 +13,9 @@ $id('slideshow-container').onmouseout = () => paused = false;
 
 let slideIndex = 1;
 showSlides(slideIndex);
-// let si = setInterval(() => {
-//   if (!paused) showSlides(slideIndex += 1)
-// }, 3000);
+let si = setInterval(() => {
+  if (!paused) showSlides(slideIndex += 1)
+}, 3000);
 
 function plusSlides(n) {
   showSlides(slideIndex += n);

@@ -8,8 +8,8 @@
     "build": "WEBPACK_ENV=build webpack",
     "dev": "WEBPACK_ENV=dev webpack --watch --progress --colors --hot",
     "dev-server": "WEBPACK_ENV=dev webpack-dev-server --watch --progress --colors --hot --inline",
-    "deploy": "",
-    "invalidate-cloudfront": ""
+    "deploy": "aws s3 sync . s3://mochibox.io/ --delete --exclude 'js/*' --exclude 'aws/*' --exclude 'old_img/*' --exclude '.git/*' --exclude 'node_modules/*' --exclude 'build/*.json' --exclude 'package.json' --exclude 'webpack.config.js' --exclude '.DS_Store' --exclude '.babelrc' --exclude '.eslintrc' --exclude '.gitignore' --exclude 'npm-debug.log'",
+    "invalidate": "aws cloudfront create-invalidation --distribution-id EEIQEWVD8ACU4 --paths /"
   },
   "repository": {
     "type": "git",

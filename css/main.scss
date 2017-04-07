@@ -13,15 +13,27 @@ body {
   margin: 0;
 }
 
-.main-img {
+#front-page {
   position: relative;
-  height: 787px;
+  @media #{$mobile-portrait} {
+    overflow: hidden;
+    height: 667px;
+  }
+  @media #{$desktop} {
+    height: 787px;
+  }
 }
 
 .front-img {
-  height: auto;
-  width: 100%;
   position: absolute;
+  @media #{$desktop} {
+    width: 100%;
+    height: auto;
+  }
+  @media #{$mobile-portrait} {
+    width: auto;
+    height: 667px;
+  }
 }
 
 .navbar {
@@ -41,10 +53,14 @@ body {
   position: fixed;
   background: rgba(51, 51, 51, 0.81);
   width: 100%;
-  padding: 0 9%;
   box-sizing: border-box;
   transition: background .2s linear;
   z-index: 99;
+  @media #{$desktop} {
+    padding: 0 9%;
+  }
+  @media #{$mobile-portrait} {
+  }  
 }
 
 .nav-holder {
@@ -52,15 +68,26 @@ body {
   border-bottom: 1px solid rgba(128, 128, 128, 0.65);
   display: flex;
   align-items: center;
-  transition: padding .2s linear;
   text-shadow: 0 0 17px black;
+  transition: padding .2s linear;
+  @media #{$desktop} {
+    padding: 53px 0 20px 0px;
+  }
+  @media #{$mobile-portrait} {
+    padding: 20px 0 20px 20px;    
+  }
 }
 
 .nav-holder-scrolled {
-  padding: 9px 0 9px 0px;
   display: flex;
   align-items: center;
   transition: padding .2s linear;
+  @media #{$desktop} {
+    padding: 9px 0 9px 0px;    
+  }
+  @media #{$mobile-portrait} {
+    padding: 10px 0 10px 10px;
+  }  
 }
 
 .mochi {
@@ -139,6 +166,19 @@ body {
   transition: all .2s linear;
 }
 
+.hamburger {
+  @media #{$desktop} {
+    display: none;
+  }
+  @media #{$mobile-portrait} {
+    color: #f2f2f2;
+    font-size: 40px;
+    text-decoration: none;
+    margin-left: auto;
+    margin-right: 20px;    
+  }
+}
+
 .footer-logo {
   width: 50px;
   height: 37.5px;
@@ -173,6 +213,9 @@ h3.learn-more {
   user-select: none;
   -webkit-user-select: none;
   cursor: pointer;
+  @media #{$mobile-portrait} {
+    display: none;
+  }  
 }
 
 h3.learn-more:hover {
@@ -208,6 +251,9 @@ h3.learn-more-scrolled {
   user-select: none;
   -webkit-user-select: none;  
   cursor: pointer;
+  @media #{$mobile-portrait} {
+    display: none;
+  }
 }
 
 h3.learn-more-scrolled:hover {
@@ -245,6 +291,12 @@ h3.nav-item {
   user-select: none;
   -webkit-user-select: none;
   cursor: pointer;
+  @media #{$desktop} {
+    
+  }
+  @media #{$mobile-portrait} {
+    display: none;
+  }
 }
 
 h3.nav-item:hover {
@@ -255,7 +307,6 @@ h3.nav-item:hover {
   text-align: center;
   width: 100%;
   position: absolute;
-  top: 43%;
   left: 50%;
   transform: translate(-50%, -50%);
   color: white;
@@ -264,6 +315,12 @@ h3.nav-item:hover {
   border-radius: 7px;
   user-select: none;
   -webkit-user-select: none;
+  @media #{$desktop} {
+    top: 43%;
+  }
+  @media #{$mobile-portrait} {
+    top: 52%;
+  }  
 }
 
 a.demo-button {
@@ -271,20 +328,28 @@ a.demo-button {
 }
 
 button.demo-button {
-  height: 50px;
-  width: 210px;
   border-radius: 6px;
   /*background: #92dc6e;*/ /*green color scheme*/
   background: #e3516c;
   border: none;
-  font-size: 0.6em;
-  margin: 35px;
   color: white;
   font-family: 'Cabin', sans-serif;
   text-transform: uppercase;
   letter-spacing: .1em;
   box-shadow: 1px black;
   cursor: pointer;
+  @media #{$desktop} {
+    margin: 35px;
+    font-size: 0.6em;
+    height: 50px;
+    width: 210px;    
+  }
+  @media #{$mobile-portrait} {
+    margin: 70px 35px 55px 35px;
+    font-size: 0.8em;  
+    height: 60px;
+    width: 220px;    
+  }  
 }
 
 button.demo-button:hover {
@@ -303,13 +368,19 @@ button.demo-button:focus {
 h1.tagline {
   margin: 10px;
   font-weight: 400;
-  font-size: 2.3em;
   letter-spacing: .03em;
   text-shadow: 0 0 17px black;
   animation: slidedown 1s;
   -moz-animation: slidedown 1s;
   -webkit-animation: slidedown 1s;
   animation-fill-mode: forwards; /*makes the object keep the new position*/
+  @media #{$desktop} {
+    font-size: 2.3em;
+    padding: 53px 0 20px 0px;
+  }
+  @media #{$mobile-portrait} {
+    font-size: 1.7em;
+  }
 }
 
 /*h3.slogan-description {
@@ -327,12 +398,14 @@ i.chevron-down {
   font-size: 1.9em;
   position: absolute;
   text-decoration: none;
-  top: 87%;
   left: 50%;
   transform: translate(-50%, -50%);
   animation: bounceUpDown 1s linear infinite;
   -moz-animation: bounceUpDown 1s linear infinite;
   -webkit-animation: bounceUpDown 1s linear infinite;
+  @media #{$mobile-portrait} {
+    bottom: 0px;
+  }
 }
 
 i.chevron-down:hover {
@@ -341,18 +414,28 @@ i.chevron-down:hover {
 
 #description-section {
   width: 100%;
-  height: 550px;
   box-sizing: border-box;
   text-align: center;
   position: relative;
   background: linear-gradient(-19deg, rgba(69, 189, 225, 0.33), rgba(214, 70, 70, 0.25));
-  /*, linear-gradient(180deg, black, white 2%)*/
+  @media #{$desktop} {
+    height: 550px;
+  }
+  @media #{$mobile-portrait} {
+    height: 990px;    
+  }
 }
 
 .description-section-text {
   font-size: 2em;
   color: rgba(51, 51, 51, 0.85);
   padding: 90px 21% 115px 21%;
+  @media #{$desktop} {
+    padding: 90px 21% 115px 21%;    
+  }
+  @media #{$mobile-portrait} {
+    padding: 70px 9% 90px 9%;
+  }  
 }
 
 i.chevron-description {
@@ -369,13 +452,21 @@ i.chevron-description:hover {
 }
 
 .why-mochi {
-  display: flex;
-  justify-content: space-around;
-  margin: 10px 60px;
+  @media #{$mobile-portrait} {
+
+  }
+  @media #{$desktop} {
+    display: flex;
+    justify-content: space-around;
+    margin: 10px 60px;
+  }
 }
 
-.reason-mochi {
 
+.reason-mochi {
+  @media #{$mobile-portrait} {
+    margin-bottom: 40px;
+  }
 }
 
 .reason-mochi-header {
@@ -399,6 +490,9 @@ i.chevron-description:hover {
   background: white;
   position: relative;
   justify-content: center;
+  @media #{$mobile-portrait} {
+
+  }
 }
 
 #signup {

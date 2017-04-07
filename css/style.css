@@ -8,7 +8,7 @@ body {
   margin: 0;
 }
 
-.main-img {
+#front-page {
   background-image: url('../img/restaurant3.jpg');
   height: 100%;
   background-position: center;

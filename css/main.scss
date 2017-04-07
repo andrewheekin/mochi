@@ -27,8 +27,8 @@ body {
 .front-img {
   position: absolute;
   @media #{$desktop} {
-    width: 100%;
-    height: auto;
+    width: auto;
+    height: 787px;
   }
   @media #{$mobile-portrait} {
     width: auto;
@@ -422,7 +422,7 @@ i.chevron-down:hover {
     height: 550px;
   }
   @media #{$mobile-portrait} {
-    height: 990px;    
+    height: 1000px;    
   }
 }
 
@@ -442,18 +442,23 @@ i.chevron-description {
   color: black;
   font-size: 1.9em;
   position: absolute;
-  bottom: 33px;
   text-decoration: none;
   transform: translate(-50%, -50%);
+  @media #{$desktop} {
+    bottom: 33px;    
+  }
+  @media #{$mobile-portrait} {
+    bottom: 5px;    
+  }
 }
 
 i.chevron-description:hover {
   opacity: 0.7;
 }
 
-.why-mochi {
+.why-mochi-desktop {
   @media #{$mobile-portrait} {
-
+    display: none;
   }
   @media #{$desktop} {
     display: flex;
@@ -462,10 +467,18 @@ i.chevron-description:hover {
   }
 }
 
+.why-mochi-mobile {
+  @media #{$mobile-portrait} {
+
+  }
+  @media #{$desktop} {
+    display: none;
+  }
+}
 
 .reason-mochi {
   @media #{$mobile-portrait} {
-    margin-bottom: 40px;
+    margin: 0px 15px 40px 15px
   }
 }
 

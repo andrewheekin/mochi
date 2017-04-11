@@ -720,15 +720,21 @@ h3#submit-button:focus {
   display: none;
   box-sizing: border-box;
   position: absolute;
-  top: 35px;
-  left: 133px;
-  width: 834px;
-  height: 526px;
   background: rgba(128, 128, 128, 0.2);
   -webkit-animation-name: fade;
   -webkit-animation-duration: 0.5s;
   animation-name: fade;
   animation-duration: 0.5s;
+  @media #{$desktop} {
+    left: 133px;
+    top: 35px;
+    width: 834px;
+    height: 526px;    
+  }
+  @media #{$mobile-portrait} {
+    left: 0px;
+    width: 100%;
+  }
 }
 
 /* Slideshow container */
@@ -744,16 +750,24 @@ h3#submit-button:focus {
   z-index: 10;
   position: absolute;
   pointer-events: none;
+  @media #{$mobile-portrait} {
+    display: none;
+  }  
 }
 
 .mochibox-example {
-  margin: 125px 179px 151px 180px;
   height: 250px;
   position: absolute;
   top: 0;
   z-index: 11;
   filter: sepia(40%);
   -webkit-filter: sepia(33%);
+  @media #{$desktop} {
+    margin: 125px 179px 151px 180px;    
+  }
+  @media #{$mobile-portrait} {
+    margin: 35px;    
+  }
 }
 
 .burger {

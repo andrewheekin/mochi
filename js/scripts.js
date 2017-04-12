@@ -10,15 +10,17 @@ import { $id, $cl } from './util';
 
 // open the mobile nav menu
 $id('hamburger').onclick = () => openMobileNav();
+
 function openMobileNav() {
   $id('side-nav').style.width = '160px';
 }
 
-// close the mobile nav menu
+// close the mobile nav menu when a link is clicked
 $id('close-nav').onclick = () => closeMobileNav();
 $cl('mobile-nav')[0].onclick = () => closeMobileNav();
 $cl('mobile-nav')[1].onclick = () => closeMobileNav();
 $cl('mobile-nav')[2].onclick = () => closeMobileNav();
+
 function closeMobileNav() {
   $id('side-nav').style.width = '0px';
 }

@@ -7,7 +7,6 @@ let navbar = $id('navbar');
 let navHolder = $id('nav-holder');
 let logo = $id('logo');
 let mochi = $id('mochi');
-// let mochiBox = $id('mochi-popup');
 let learnMore = $id('learn-more');
 
 
@@ -30,14 +29,12 @@ function checkScroll() {
     navHolder.className = 'nav-holder-scrolled';
     logo.className = 'logo-scrolled';
     mochi.className = 'mochi-scrolled';
-    // mochiBox.className = 'mochi-popup-scrolled';
   }
   else if (window.scrollY < 20) {
     navbar.className = 'navbar';
     navHolder.className = 'nav-holder';
     logo.className = 'logo';
     mochi.className = 'mochi';
-    // mochiBox.className = 'mochi-popup';
   }
   return;
 }

@@ -3,7 +3,7 @@
 import axios from 'axios';
 import './scrollWatch';
 import './smoothScroll';
-// import './signupModal';
+import './signupModal';
 import './popupExample';
 import { $id } from './util';
 

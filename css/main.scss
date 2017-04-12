@@ -67,7 +67,7 @@ body {
   width: 100%;
   box-sizing: border-box;
   transition: background .2s linear;
-  z-index: 99;
+  z-index: 12;
   @media #{$desktop} {
     padding: 0 9%;
   }
@@ -152,13 +152,14 @@ body {
   transition: all .2s linear;
 }
 
-.hamburger {
+#hamburger {
   @media #{$desktop} {
     display: none;
   }
   @media #{$mobile-portrait} {
     color: #f2f2f2;
     font-size: 40px;
+    cursor: pointer;
     text-decoration: none;
     margin-left: auto;
     margin-right: 20px;
@@ -166,6 +167,40 @@ body {
       outline: none;
     }
   }
+}
+
+#side-nav {
+  height: 100%;
+  width: 0;
+  position: fixed;
+  z-index: 13;
+  top: 0;
+  right: 0;
+  background-color: #111;
+  overflow-x: hidden;
+  transition: 0.5s;
+  padding-top: 75px;
+}
+
+.mobile-nav {
+  padding: 8px 8px 8px 32px;
+  text-decoration: none;
+  font-size: 30px;
+  color: #818181;
+  display: block;
+  transition: 0.3s;
+  &:hover {
+    color: #f1f1f1;
+  } 
+}
+
+#close-nav {
+  position: absolute;
+  top: 0;
+  right: 25px;
+  font-size: 55px;
+  margin-left: 50px;
+  color: #818181;    
 }
 
 .footer-logo {
@@ -499,7 +534,7 @@ i.chevron-description {
     padding: 100px 20%;
   }
   @media #{$mobile-portrait} {
-    padding: 40px 20px;
+    padding: 30px 20px;
   }
 }
 
@@ -514,7 +549,7 @@ i.chevron-description {
     margin: 20px 0px 80px 0px;
   }
   @media #{$mobile-portrait} {
-    margin: 50px 0px;
+    margin: 40px 0px;
   }
 }
 

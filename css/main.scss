@@ -131,7 +131,6 @@ body {
   -webkit-border-radius: 57% 57% 50% 50% / 90% 90% 40% 40%;
   box-shadow: 8px 7px 20px 0px rgba(0, 0, 0, 0.28);
   background: linear-gradient(-65deg, #45bde1, #d64646);
-  /*background: linear-gradient( -65deg, #d0f0c0, green );*/ /*green color scheme*/
   -moz-box-shadow: inset 0 0 10px #000000;
   -webkit-box-shadow: inset 0 0 10px #000000;
   box-shadow: inset 0 0 9px #15304c;
@@ -145,7 +144,6 @@ body {
   -webkit-border-radius: 57% 57% 50% 50% / 90% 90% 40% 40%;
   box-shadow: 8px 7px 20px 0px rgba(0, 0, 0, 0.28);
   background: linear-gradient(-65deg, #45bde1, #d64646);
-  /*background: linear-gradient( -65deg, #d0f0c0, green );*/ /*green color scheme*/
   -moz-box-shadow: inset 0 0 10px #000000;
   -webkit-box-shadow: inset 0 0 10px #000000;
   box-shadow: inset 0 0 9px #15304c;
@@ -963,7 +961,6 @@ h3#submit-button {
   text-transform: uppercase;
   font-weight: bold;
   background: #abe6e9;
-  height: 100%;
   text-align: center;
   @media #{$desktop} {
     padding: 7px 50px 0px 50px;

@@ -49,16 +49,12 @@ closeButton.style = `
   line-height: .7;
   text-align: center;
   font-weight: bold;
-  transition: opacity .2s ease;
+  transition: opacity .1s ease;
 `;
-  // &:hover, &:active {
-  //   opacity: 0.3;
-  //   text-decoration: none;
-  //   cursor: pointer;
 
 
 let popupText = document.createElement('div');
-popupText.innerHTML = 'Half off buckets<br><hr style="color:white;">Today to Friday';
+popupText.innerHTML = 'Enter your email<br><hr style="color:white;">For half-off a bucket';
 popupText.style = `
   color: white;
   text-transform: uppercase;
@@ -80,8 +76,8 @@ popupText.style = `
 let restaurantLogo = document.createElement('img');
 restaurantLogo.src = 'http://localhost:8080/img/restaurant-logo.gif';
 restaurantLogo.style = `
-  width: 90%;
-  margin-top: 10px;
+  width: 70%;
+  margin-bottom: 15px;
 `;
 
 
@@ -97,13 +93,70 @@ popupImg.style = `
   //   height: 180px;    
 
 
+let emailIpt = document.createElement('input');
+emailIpt.type = 'text';
+emailIpt.placeholder = 'name@email.com';
+emailIpt.placeholder.style = 'color: white';
+emailIpt.style = `
+  border-radius: 3px 0px 0px 3px;
+  width: 70%;
+  padding: 10px;
+  font-size: 13px;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  border: none;
+  background: rgba(255, 255, 255, 0.2);
+  color: white;
+  text-align: center;
+`;
 
+
+let goBtn = document.createElement('button');
+goBtn.innerHTML = 'GO!';
+// submit the email and say 'thanks!' when the GO! button is clicked
+goBtn.onclick = () => {
+  goBtn.style.display = 'none';
+  emailIpt.style.display = 'none';
+  thanksLabel.style.display = 'block';
+}
+goBtn.onmouseover = () => goBtn.style.opacity = .8;
+goBtn.onmouseout = () => goBtn.style.opacity = 1;
+goBtn.style = `
+  padding: 10px;
+  border: none;
+  border-radius: 0px 3px 3px 0px;
+  font-size: 13px;
+  background: grey;
+  font-weight: bold;
+  transition: opacity .1s ease;
+`;
+
+
+let thanksLabel = document.createElement('div');
+thanksLabel.innerHTML = 'Thanks!<br>Check your email for the deal';
+thanksLabel.style = `
+  display: none;
+  line-height: 1em;
+  font-weight: normal;
+  font-size: 17px;
+  letter-spacing: 1.5px;
+`;
+
+
+// build the modal
 popupText.appendChild(restaurantLogo);
+popupText.appendChild(emailIpt);
+popupText.appendChild(goBtn);
+popupText.appendChild(thanksLabel);
 content.appendChild(closeButton);
 content.appendChild(popupText);
 content.appendChild(popupImg);
 popup.appendChild(content);
-setTimeout(() => document.body.appendChild(popup), 1000);
+setTimeout(() => {
+  document.body.appendChild(popup);
+  // put the cursor in the email input NOT WORKING
+  emailIpt.focus();
+}, 1000);
 
 
 document.onkeypress = (e) => {
@@ -117,9 +170,8 @@ document.onkeypress = (e) => {
   }
 };
 
-// make adding the email have the input disappear and there reveal a coupon code
+
 // do it for bayou bakery and spirits of '76
 // make an https version...
 // add in a mobile version...
-
 

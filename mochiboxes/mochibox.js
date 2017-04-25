@@ -1,4 +1,4 @@
-// let js = document.createElement("script"); js.type = "text/javascript"; js.src = "http://localhost:8080/js/mochibox.js"; document.body.appendChild(js);
+// let js = document.createElement("script"); js.src = "http://localhost:8080/mochiboxes/mochibox.js"; document.body.appendChild(js);
 
 let popup = document.createElement('div');
 // hide popup if the user clicks outside it
@@ -46,7 +46,7 @@ closeButton.style = `
   border-radius: 53px;
   height: 23px;
   width: 23px;
-  line-height: .7;
+  line-height: .6;
   text-align: center;
   font-weight: bold;
   transition: opacity .1s ease;
@@ -54,7 +54,7 @@ closeButton.style = `
 
 
 let popupText = document.createElement('div');
-popupText.innerHTML = 'Enter your email<br><hr style="color:white;">For half-off a bucket';
+popupText.innerHTML = 'Enter your email<br><hr style="color:white;">Try it for less than beer money';
 popupText.style = `
   color: white;
   text-transform: uppercase;
@@ -63,9 +63,9 @@ popupText.style = `
   text-align: center;
   border: 5px solid white;
   padding: 35px 18px;
-  line-height: 1.7em;
-  font-size: 30px;
-  letter-spacing: 3px;
+  line-height: 1.1em;
+  font-size: 23px;
+  letter-spacing: 1.2px;
 `;
   // @media #{$mobile-portrait} {
   //   padding: 10px;
@@ -73,16 +73,16 @@ popupText.style = `
   // }
 
 
-let restaurantLogo = document.createElement('img');
-restaurantLogo.src = 'http://localhost:8080/img/restaurant-logo.gif';
-restaurantLogo.style = `
+let mochiboxLogo = document.createElement('img');
+mochiboxLogo.src = '../../img/mochilogo/logo-black.png';
+mochiboxLogo.style = `
   width: 70%;
-  margin-bottom: 15px;
+  margin: 30px 0px;
 `;
 
 
 let popupImg = document.createElement('img');
-popupImg.src = 'http://localhost:8080/img/beer.jpg';
+popupImg.src = '../../img/beer.jpg';
 popupImg.style = `
   z-index: 10;
   pointer-events: none;
@@ -133,7 +133,7 @@ goBtn.style = `
 
 
 let thanksLabel = document.createElement('div');
-thanksLabel.innerHTML = 'Thanks!<br>Check your email for the deal';
+thanksLabel.innerHTML = 'Thanks!';
 thanksLabel.style = `
   display: none;
   line-height: 1em;
@@ -144,7 +144,7 @@ thanksLabel.style = `
 
 
 // build the modal
-popupText.appendChild(restaurantLogo);
+popupText.appendChild(mochiboxLogo);
 popupText.appendChild(emailIpt);
 popupText.appendChild(goBtn);
 popupText.appendChild(thanksLabel);
@@ -159,13 +159,13 @@ setTimeout(() => {
 }, 1000);
 
 
-document.onkeypress = (e) => {
-  switch(e.key) {
-    // press 1 to re-display the popup
-    case '1':
+document.onkeydown = (e) => {
+  switch(e.keyCode) {
+    case 49: // press 1 to re-display popup
       popup.style.display = 'block';
       break;
-    default:
+    case 27: // press esc to close popup
+      popup.style.display = 'none';
       break;
   }
 };

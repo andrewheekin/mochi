@@ -24,8 +24,8 @@ let si = setInterval(() => {
 // mobile swipe through popup examples
 let mc = new Hammer($id('popup-example'));
 mc.on('swipe', (e) => {
-  if (e.deltaX < 0) plusSlides(-1);
-  if (e.deltaX > 0) plusSlides(1);
+  if (e.deltaX < 0) plusSlides(1);
+  if (e.deltaX > 0) plusSlides(-1);
 });
 
 function plusSlides(n) {

@@ -94,6 +94,3 @@ function saveFormInfo() {
   $id('signup-modal').style.display = 'block';  
 }
 
-
-
-

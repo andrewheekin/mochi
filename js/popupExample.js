@@ -1,4 +1,6 @@
+import * as Hammer from 'hammerjs';
 import { $id, $cl } from './util';
+
 
 $id('prev').onclick = () => plusSlides(-1);
 $id('next').onclick = () => plusSlides(1);
@@ -13,9 +15,18 @@ $id('slideshow-container').onmouseout = () => paused = false;
 
 let slideIndex = 1;
 showSlides(slideIndex);
+// don't automatically flip the slides on mobile devices
+let isMobile = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
 let si = setInterval(() => {
-  if (!paused) showSlides(slideIndex += 1);
+  if (!paused && !isMobile) plusSlides(1);
 }, 3000);
+
+// mobile swipe through popup examples
+let mc = new Hammer($id('popup-example'));
+mc.on('swipe', (e) => {
+  if (e.deltaX < 0) plusSlides(-1);
+  if (e.deltaX > 0) plusSlides(1);
+});
 
 function plusSlides(n) {
   showSlides(slideIndex += n);

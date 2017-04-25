@@ -100,14 +100,14 @@ emailIpt.placeholder.style = 'color: white';
 emailIpt.style = `
   border-radius: 3px 0px 0px 3px;
   width: 70%;
-  padding: 10px;
+  padding: 10px 5px 10px 20px;
   font-size: 13px;
   letter-spacing: 1px;
   text-transform: uppercase;
   border: none;
   background: rgba(255, 255, 255, 0.2);
   color: white;
-  text-align: center;
+  outline: none;  
 `;
 
 

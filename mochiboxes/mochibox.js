@@ -12,11 +12,13 @@ popup.style = `
   z-index: 99999999;
   filter: sepia(40%);
   -webkit-filter: sepia(33%);
-  padding: 120px calc(50% - 350px);
+  padding: 100px calc(50% - 350px);
   height: 100%;
   width: 100%;
   background-color: rgba(0,0,0,0.6);
   box-sizing: border-box;
+  opacity: 0;
+  transition: opacity .5s ease, padding .3s linear;
 `;
 
 
@@ -100,14 +102,14 @@ emailIpt.placeholder.style = 'color: white';
 emailIpt.style = `
   border-radius: 3px 0px 0px 3px;
   width: 70%;
-  padding: 10px;
+  padding: 10px 5px 10px 20px;
   font-size: 13px;
   letter-spacing: 1px;
   text-transform: uppercase;
   border: none;
   background: rgba(255, 255, 255, 0.2);
   color: white;
-  text-align: center;
+  outline: none;
 `;
 
 
@@ -154,6 +156,11 @@ content.appendChild(popupImg);
 popup.appendChild(content);
 setTimeout(() => {
   document.body.appendChild(popup);
+  document.body.onload = () => console.log('loaded');
+  setTimeout(() => {
+    popup.style.opacity = '1';
+    popup.style.paddingTop = '120px';
+  }, 50);
   // put the cursor in the email input NOT WORKING
   emailIpt.focus();
 }, 1000);

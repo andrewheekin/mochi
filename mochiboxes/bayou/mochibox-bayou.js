@@ -39,7 +39,11 @@ content.style = `
 let closeBtn = document.createElement('span');
 closeBtn.innerHTML = '&times';
 //close popup on x click
-closeBtn.onclick = () => popup.style.display = 'none';
+closeBtn.onclick = () => {
+  popup.style.display = 'none';
+  popup.style.opacity = '0';
+  popup.style.paddingTop = '100px';
+}
 closeBtn.onmouseover = () => closeBtn.style.opacity = .5;
 closeBtn.onmouseout = () => closeBtn.style.opacity = 1;
 closeBtn.style = `
@@ -174,6 +178,8 @@ document.onkeydown = (e) => {
       break;
     case 27: // press esc to close popup
       popup.style.display = 'none';
+      popup.style.opacity = '0';
+      popup.style.paddingTop = '100px';
       break;
     case 13: // press enter to submit email
       goBtn.click();

@@ -1,4 +1,4 @@
-// let js = document.createElement("script"); js.src = "http://localhost:8080/mochiboxes/mochibox.js"; document.body.appendChild(js);
+// let js = document.createElement("script"); js.src = "http://localhost:8080/mochiboxes/homepage/mochibox.js"; document.body.appendChild(js);
 
 let popup = document.createElement('div');
 // hide popup if the user clicks outside it
@@ -10,8 +10,6 @@ popup.style = `
   border-radius: 3px;
   top: 0;
   z-index: 99999999;
-  filter: sepia(40%);
-  -webkit-filter: sepia(33%);
   padding: 100px calc(50% - 350px);
   height: 100%;
   width: 100%;
@@ -56,7 +54,7 @@ closeBtn.style = `
 
 
 let popupText = document.createElement('div');
-popupText.innerHTML = 'Enter your email<br><hr style="color:white;">Try it for less than beer money';
+popupText.innerHTML = 'Get web visitors into your restaurant!<br><hr style="color:white;">Enter your email';
 popupText.style = `
   color: white;
   text-transform: uppercase;
@@ -76,7 +74,7 @@ popupText.style = `
 
 
 let mochiboxLogo = document.createElement('img');
-mochiboxLogo.src = '../../img/mochilogo/logo-black.png';
+mochiboxLogo.src = '../../../img/mochilogo/logo-black.png';
 mochiboxLogo.style = `
   width: 70%;
   margin: 30px 0px;
@@ -84,7 +82,8 @@ mochiboxLogo.style = `
 
 
 let popupImg = document.createElement('img');
-popupImg.src = '../../img/beer.jpg';
+// popupImg.src = 'http://localhost:8080/mochiboxes/hompepage/box.png';
+popupImg.src = 'http://localhost:8080/mochiboxes/homepage/box.jpg';
 popupImg.style = `
   z-index: 10;
   pointer-events: none;
@@ -119,6 +118,7 @@ goBtn.onclick = () => {
   goBtn.style.display = 'none';
   emailIpt.style.display = 'none';
   thanksLabel.style.display = 'block';
+  saveEmail();
 }
 goBtn.onmouseover = () => goBtn.style.opacity = .8;
 goBtn.onmouseout = () => goBtn.style.opacity = 1;
@@ -177,6 +177,17 @@ document.onkeydown = (e) => {
       break;
   }
 };
+
+
+function saveEmail() {
+  // XMLHttpRequest POST
+  let http = new XMLHttpRequest();
+  let url = "https://v392r778gl.execute-api.us-east-1.amazonaws.com/prod/email";
+  let params = JSON.stringify({email: emailIpt.value});
+  http.open("POST", url, true);
+  http.setRequestHeader("Content-type", "application/json");
+  http.send(params);
+}
 
 
 // do it for bayou bakery and spirits of '76

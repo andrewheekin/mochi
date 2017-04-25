@@ -82,8 +82,7 @@ mochiboxLogo.style = `
 
 
 let popupImg = document.createElement('img');
-// popupImg.src = 'http://localhost:8080/mochiboxes/hompepage/box.png';
-popupImg.src = 'http://localhost:8080/mochiboxes/homepage/box.jpg';
+popupImg.src = './box.jpg';
 popupImg.style = `
   z-index: 10;
   pointer-events: none;

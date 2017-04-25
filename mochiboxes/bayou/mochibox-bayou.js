@@ -66,7 +66,7 @@ closeBtn.style = `
 
 
 let popupText = document.createElement('div');
-popupText.innerHTML = 'Enter your email<br><hr style="color:white;">For half-off beignets';
+popupText.innerHTML = 'Enter your email<br><hr style="color:white;">For half-off breakfast';
 popupText.style = `
   color: white;
   text-transform: uppercase;

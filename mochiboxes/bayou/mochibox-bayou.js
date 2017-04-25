@@ -1,11 +1,17 @@
-// let js = document.createElement("script"); js.src = "http://localhost:8080/mochiboxes/mochibox.js"; document.body.appendChild(js);
+// press 1 to show popup, click outside the popup to hide it
+// let js = document.createElement("script"); js.src = "http://localhost:8080/mochiboxes/bayou/mochibox-bayou.js"; document.body.appendChild(js);
 
 let popup = document.createElement('div');
 // hide popup if the user clicks outside it
 popup.onclick = (e) => {
-  if (e.target == popup) popup.style.display = 'none';
+  if (e.target == popup) {
+    popup.style.display = 'none';
+    popup.style.opacity = '0';
+    popup.style.paddingTop = '100px';       
+  }
 }
 popup.style = `
+  display: none;
   position: fixed;
   border-radius: 3px;
   top: 0;
@@ -18,7 +24,7 @@ popup.style = `
   background-color: rgba(0,0,0,0.6);
   box-sizing: border-box;
   opacity: 0;
-  transition: opacity .5s ease, padding .2s linear;
+  transition: opacity .5s ease, padding .2s linear;  
 `;
 
 
@@ -56,11 +62,10 @@ closeBtn.style = `
 
 
 let popupText = document.createElement('div');
-popupText.innerHTML = 'Enter your email<br><hr style="color:white;">Try it for less than beer money';
+popupText.innerHTML = 'Enter your email<br><hr style="color:white;">For half-off beignets';
 popupText.style = `
   color: white;
   text-transform: uppercase;
-  font-weight: bold;
   background: black;
   text-align: center;
   border: 5px solid white;
@@ -75,16 +80,16 @@ popupText.style = `
   // }
 
 
-let mochiboxLogo = document.createElement('img');
-mochiboxLogo.src = '../../img/mochilogo/logo-black.png';
-mochiboxLogo.style = `
+let restaurantLogo = document.createElement('img');
+restaurantLogo.src = 'http://localhost:8080/mochiboxes/bayou/logo.png';
+restaurantLogo.style = `
   width: 70%;
-  margin: 30px 0px;
+  margin: 15px 0px;
 `;
 
 
 let popupImg = document.createElement('img');
-popupImg.src = '../../img/beer.jpg';
+popupImg.src = 'http://localhost:8080/mochiboxes/bayou/food.jpg';
 popupImg.style = `
   z-index: 10;
   pointer-events: none;
@@ -145,7 +150,7 @@ thanksLabel.style = `
 
 
 // build the modal
-popupText.appendChild(mochiboxLogo);
+popupText.appendChild(restaurantLogo);
 popupText.appendChild(emailIpt);
 popupText.appendChild(goBtn);
 popupText.appendChild(thanksLabel);
@@ -153,21 +158,19 @@ content.appendChild(closeBtn);
 content.appendChild(popupText);
 content.appendChild(popupImg);
 popup.appendChild(content);
-setTimeout(() => {
-  document.body.appendChild(popup);
-  setTimeout(() => {
-    popup.style.opacity = '1';
-    popup.style.paddingTop = '120px';
-  }, 50);
-  // put the cursor in the email input NOT WORKING
-  emailIpt.focus();
-}, 1000);
+document.body.appendChild(popup);
 
 
 document.onkeydown = (e) => {
   switch(e.keyCode) {
     case 49: // press 1 to re-display popup
       popup.style.display = 'block';
+      setTimeout(() => {
+        popup.style.opacity = '1';
+        popup.style.paddingTop = '120px';
+        // put the cursor in the email input    
+        emailIpt.focus();
+      }, 50);    
       break;
     case 27: // press esc to close popup
       popup.style.display = 'none';
@@ -179,7 +182,6 @@ document.onkeydown = (e) => {
 };
 
 
-// do it for bayou bakery and spirits of '76
 // make an https version...
 // add in a mobile version...
 

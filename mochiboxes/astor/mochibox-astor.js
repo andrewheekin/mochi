@@ -1,4 +1,4 @@
-// let js = document.createElement("script"); js.src = "http://localhost:8080/mochiboxes/mochibox.js"; document.body.appendChild(js);
+// let js = document.createElement("script"); js.src = "http://localhost:8080/mochiboxes/astor/mochibox-astor.js"; document.body.appendChild(js);
 
 let popup = document.createElement('div');
 // hide popup if the user clicks outside it
@@ -18,7 +18,7 @@ popup.style = `
   background-color: rgba(0,0,0,0.6);
   box-sizing: border-box;
   opacity: 0;
-  transition: opacity .5s ease, padding .2s linear;
+  transition: opacity .5s ease, padding .2s linear;  
 `;
 
 
@@ -48,7 +48,7 @@ closeBtn.style = `
   border-radius: 53px;
   height: 23px;
   width: 23px;
-  line-height: .6;
+  line-height: .7;
   text-align: center;
   font-weight: bold;
   transition: opacity .1s ease;
@@ -56,7 +56,7 @@ closeBtn.style = `
 
 
 let popupText = document.createElement('div');
-popupText.innerHTML = 'Enter your email<br><hr style="color:white;">Try it for less than beer money';
+popupText.innerHTML = 'Enter your email<br><hr style="color:white;">For half-off a bucket';
 popupText.style = `
   color: white;
   text-transform: uppercase;
@@ -65,9 +65,9 @@ popupText.style = `
   text-align: center;
   border: 5px solid white;
   padding: 35px 18px;
-  line-height: 1.1em;
-  font-size: 23px;
-  letter-spacing: 1.2px;
+  line-height: 1.7em;
+  font-size: 30px;
+  letter-spacing: 3px;
 `;
   // @media #{$mobile-portrait} {
   //   padding: 10px;
@@ -75,16 +75,16 @@ popupText.style = `
   // }
 
 
-let mochiboxLogo = document.createElement('img');
-mochiboxLogo.src = '../../img/mochilogo/logo-black.png';
-mochiboxLogo.style = `
+let restaurantLogo = document.createElement('img');
+restaurantLogo.src = 'http://localhost:8080/img/restaurant-logo.gif';
+restaurantLogo.style = `
   width: 70%;
-  margin: 30px 0px;
+  margin-bottom: 15px;
 `;
 
 
 let popupImg = document.createElement('img');
-popupImg.src = '../../img/beer.jpg';
+popupImg.src = 'http://localhost:8080/img/beer.jpg';
 popupImg.style = `
   z-index: 10;
   pointer-events: none;
@@ -134,7 +134,7 @@ goBtn.style = `
 
 
 let thanksLabel = document.createElement('div');
-thanksLabel.innerHTML = 'Thanks!';
+thanksLabel.innerHTML = 'Thanks!<br>Check your email for the deal';
 thanksLabel.style = `
   display: none;
   line-height: 1em;
@@ -145,7 +145,7 @@ thanksLabel.style = `
 
 
 // build the modal
-popupText.appendChild(mochiboxLogo);
+popupText.appendChild(restaurantLogo);
 popupText.appendChild(emailIpt);
 popupText.appendChild(goBtn);
 popupText.appendChild(thanksLabel);
@@ -158,7 +158,7 @@ setTimeout(() => {
   setTimeout(() => {
     popup.style.opacity = '1';
     popup.style.paddingTop = '120px';
-  }, 50);
+  }, 50);  
   // put the cursor in the email input NOT WORKING
   emailIpt.focus();
 }, 1000);
@@ -174,7 +174,7 @@ document.onkeydown = (e) => {
       break;
     case 13: // press enter to submit email
       goBtn.click();
-      break;
+      break;      
   }
 };
 

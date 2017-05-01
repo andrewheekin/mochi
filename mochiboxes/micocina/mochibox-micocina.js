@@ -1,5 +1,7 @@
 // press 1 to show popup, click outside the popup to hide it
 // let js = document.createElement("script"); js.src = "http://localhost:8080/mochiboxes/micocina/mochibox-micocina.js"; document.body.appendChild(js);
+// let js = document.createElement("script"); js.src = "http://mochiobx.io/mochiboxes/micocina/mochibox-micocina.js"; document.body.appendChild(js);
+
 
 let popup = document.createElement('div');
 // hide popup if the user clicks outside it
@@ -85,7 +87,8 @@ popupText.style = `
 
 
 let restaurantLogo = document.createElement('img');
-restaurantLogo.src = 'http://localhost:8080/mochiboxes/micocina/logo.png';
+// restaurantLogo.src = 'http://localhost:8080/mochiboxes/micocina/logo.png';
+restaurantLogo.src = 'http://mochibox.io/mochiboxes/micocina/logo.png';
 restaurantLogo.style = `
   width: 70%;
   display: block;
@@ -94,7 +97,8 @@ restaurantLogo.style = `
 
 
 let popupImg = document.createElement('img');
-popupImg.src = 'http://localhost:8080/mochiboxes/micocina/food.jpg';
+// popupImg.src = 'http://localhost:8080/mochiboxes/micocina/food.jpg';
+popupImg.src = 'http://mochibox.io/mochiboxes/micocina/food.jpg';
 popupImg.style = `
   z-index: 10;
   pointer-events: none;

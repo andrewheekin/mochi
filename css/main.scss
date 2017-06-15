@@ -27,8 +27,8 @@ body {
 
 #front-page {
   position: relative;
+  overflow: hidden;  
   @media #{$mobile-portrait} {
-    overflow: hidden;
     height: 667px;
   }
   @media #{$desktop} {
@@ -39,12 +39,16 @@ body {
 .front-img {
   position: absolute;
   @media #{$desktop} {
-    width: auto;
-    height: 787px;
+    width: 100%;
+    height: auto;
+    // width: auto;
+    // height: 787px;
   }
   @media #{$mobile-portrait} {
-    width: auto;
-    height: 667px;
+    width: 100%;
+    height: auto;    
+    // width: auto;
+    // height: 667px;
   }
 }
 

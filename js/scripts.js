@@ -1,10 +1,10 @@
 'use strict';
 
-import axios from 'axios';
 import './scrollWatch';
 import './smoothScroll';
 import './signupModal';
 import './popupExample';
+import './routes';
 import { $id, $cl } from './util';
 
 
@@ -74,12 +74,15 @@ function saveFormInfo() {
     return;
   }
 
-  axios.post('https://v392r778gl.execute-api.us-east-1.amazonaws.com/prod/email', {
-    name: name,
-    email: email,
-    restaurant: restaurant,
-    phone: phone,
-    howHelp: howHelp
+  fetch('https://v392r778gl.execute-api.us-east-1.amazonaws.com/prod/email', {
+    method: 'POST',
+    body: {
+      name: name,
+      email: email,
+      restaurant: restaurant,
+      phone: phone,
+      howHelp: howHelp
+    }
   })
   // .then(resp => console.log(resp));
 

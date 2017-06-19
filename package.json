@@ -6,8 +6,7 @@
   "scripts": {
     "start": "webpack-dev-server",
     "build": "WEBPACK_ENV=build webpack",
-    "dev": "WEBPACK_ENV=dev webpack --watch --progress --hot",
-    "deploy": "aws s3 sync . s3://mochibox.io/ --delete --exclude 'js/*' --exclude 'aws/*' --exclude 'old_img/*' --exclude '.git/*' --exclude 'node_modules/*' --exclude 'build/*.json' --exclude 'package.json' --exclude 'webpack.config.js' --exclude '.DS_Store' --exclude '.babelrc' --exclude '.eslintrc' --exclude '.gitignore' --exclude 'npm-debug.log'",
+    "deploy": "aws s3 sync . s3://mochibox.io/ --delete --exclude 'js/*' --exclude 'components/*' --exclude 'aws/*' --exclude 'old_img/*' --exclude '.git/*' --exclude 'node_modules/*' --exclude 'build/*.json' --exclude 'package.json' --exclude 'webpack.config.js' --exclude '.DS_Store' --exclude '.babelrc' --exclude '.eslintrc' --exclude '.gitignore' --exclude 'npm-debug.log'",
     "invalidate": "aws cloudfront create-invalidation --distribution-id EEIQEWVD8ACU4 --paths /"
   },
   "repository": {

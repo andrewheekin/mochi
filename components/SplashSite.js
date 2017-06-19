@@ -84,7 +84,6 @@ export class SplashSite {
       $id('logo').className = 'logo';
       $id('mochi').className = 'mochi';
     }
-    return;
   }
 
 }

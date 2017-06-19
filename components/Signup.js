@@ -59,14 +59,15 @@ export class Signup {
 
     fetch('https://v392r778gl.execute-api.us-east-1.amazonaws.com/prod/email', {
       method: 'POST',
-      body: {
+      headers: {'Content-Type': 'application/json'},
+      body: JSON.stringify({
         name: name,
         email: email,
         restaurant: restaurant,
         phone: phone,
         howHelp: howHelp
-      }
-    })
+      })
+    });
 
     // clear the form 
     $id('name').value = '';

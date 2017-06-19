@@ -2,5 +2,5 @@
 /aws
 /old_img
 /node_modules
-npm-debug.log
+npm-debug.log*
 .DS_Store

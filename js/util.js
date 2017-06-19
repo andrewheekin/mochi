@@ -8,7 +8,6 @@ export function $cl(cl) {
   return document.getElementsByClassName(cl);
 }
 
-
 // addEventListener wrapper
 export function $on(type, callback, target = window) {
   target.addEventListener(type, callback);

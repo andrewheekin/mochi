@@ -3,6 +3,9 @@ $mobile-portrait: 'screen and (max-width:991px) and (orientation:portrait)';
 $mobile-landscape: 'screen and (max-width:991px) and (orientation:landscape)';
 
 
+@import '../components/frontPage';
+
+
 html {
   height: 100%;
   font-family: 'Cabin', sans-serif;

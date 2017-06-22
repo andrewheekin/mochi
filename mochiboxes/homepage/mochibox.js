@@ -54,7 +54,7 @@ closeBtn.style = `
 
 
 let popupText = document.createElement('div');
-popupText.innerHTML = 'Get web visitors into your restaurant!<br><hr style="color:white;">Enter your email';
+popupText.innerHTML = 'Get web visitors into your restaurant<br><hr style="color:white;">Enter your email';
 popupText.style = `
   color: white;
   text-transform: uppercase;
@@ -111,7 +111,7 @@ emailIpt.style = `
 
 
 let goBtn = document.createElement('button');
-goBtn.innerHTML = 'GO!';
+goBtn.innerHTML = 'GO';
 // submit the email and say 'thanks!' when the GO! button is clicked
 goBtn.onclick = () => {
   goBtn.style.display = 'none';

@@ -4,6 +4,10 @@ export class FrontPage {
   constructor() {
     this.navbar = new Navbar();
   }
+
+  init() {
+    this.navbar.init();
+  }
   
   render() {
     let html = `

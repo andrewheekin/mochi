@@ -1,6 +1,7 @@
 'use strict';
 
 import Navigo from 'navigo';
+import { CognitoUserPool } from 'amazon-cognito-identity-js';
 import { SplashSite } from '../components/SplashSite';
 import { RestaurantPage } from '../components/RestaurantPage';
 import { Login } from '../components/Login';
@@ -16,7 +17,7 @@ let router = new Navigo(null, false); // using HTML5 History API
 
 // route with before hook
 router.on('restaurant/:name', (params) => { let restaurantPage = new RestaurantPage(params.name); restaurantPage.init(); },
-              { before: (done, params) => { authenticate(params) }});
+              { before: (done, params) => { authenticate(done, params) }});
 
 // routes without hooks
 router.on({
@@ -29,11 +30,11 @@ router.on({
 router.on(() => { splashSite.init() });
 
 // 404 route
-router.notFound((query) => { document.getElementById('view').innerHTML = '<h3>Couldn\'t find the page you\'re looking for...</h3>' })
+router.notFound((query) => { /*router.navigate('/home');*/ console.log('page not found'); })
 
 router.resolve();
 
-function authenticate(params) {
+function authenticate(done, params) {
   const userPool = new CognitoUserPool({
     UserPoolId: config.cognito.USER_POOL_ID,
     ClientId: config.cognito.APP_CLIENT_ID
@@ -49,7 +50,7 @@ function authenticate(params) {
         if (cognitoUser.username == params.name) done(); // restaurant user accesses their page
         else { // a user is logged in but tries to access a page that isn't theirs, redirects to theirs
           done(false);
-          router.navigate(`/restaurants/${cognitoUser.username}`);  // username is the same as the page route
+          router.navigate(`/restaurant/${cognitoUser.username}`);  // username is the same as the page route
         }
       }
       else {  // user exists but session not valid...?

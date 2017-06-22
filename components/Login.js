@@ -2,6 +2,7 @@ import { AuthenticationDetails, CognitoUserPool, CognitoUserAttribute, CognitoUs
 import state from '../js/state';
 import { $id } from '../js/util';
 import config from '../js/config';
+import { router } from '../js/scripts';
 
 
 export class Login {
@@ -13,24 +14,24 @@ export class Login {
     this.render();  // leave this line first
 
     $id('login').onclick = () => {
-      state.auth.username = $id('login-email').value;
-      state.auth.password = $id('login-password').value;
+      state.auth.username = $id('login-restaurant').value;
       console.log('state', state);
-      this.handleLogin(state.auth.username, state.auth.password);
+      this.handleLogin(state.auth.username, $id('login-password').value);
     }
 
     $id('register').onclick = () => {
-      state.auth.username = $id('register-email').value;
-      state.auth.password = $id('register-password').value;
+      state.auth.username = $id('register-restaurant').value;
       console.log('state', state);
-      this.createUser(state.auth.username, state.auth.password);
+      this.createUser(state.auth.username, $id('register-password').value);
     }
 
     $id('confirm').onclick = () => {
       state.confcode = $id('confcode').value;
       console.log('in confirm onclick, args: ', state);
-      this.confirmSignup(state.auth.newUser, state.auth.confcode, state.auth.username, state.auth.password);
+      this.confirmSignup(state.auth.user, state.auth.confcode, state.auth.username, $id('register-password').value);
     }
+
+    $id('logout').onclick = () => this.logout();   
 
     // press 1 to see the state
     document.onkeydown = (e) => {
@@ -53,7 +54,7 @@ export class Login {
             console.log('session validity: ' + session.isValid());
           });
         }
-      }     
+      }   
     }
 
   }
@@ -61,8 +62,8 @@ export class Login {
   async createUser(username, password) {
     console.log('in createUser: ', username, password);
     try {
-      state.auth.newUser = await this.signup(username, password);
-      console.log('newUser: ', state);
+      state.auth.user = await this.signup(username, password);
+      console.log('user: ', state);
     }
     catch(e) {
       console.log('error in createUser');
@@ -76,10 +77,10 @@ export class Login {
       ClientId: config.cognito.APP_CLIENT_ID
     });
     console.log('in signup: ', userPool);
-    const attributeEmail = new CognitoUserAttribute({ Name : 'email', Value : username });
+    const attributeName= new CognitoUserAttribute({ Name : 'name', Value : username });
 
     return new Promise((resolve, reject) => (
-      userPool.signUp(username, password, [attributeEmail], null, (err, result) => {
+      userPool.signUp(username, password, [attributeName], null, (err, result) => {
         if (err) {
           reject(err);
           return;
@@ -89,11 +90,11 @@ export class Login {
     ));
   }
 
-  async confirmSignup(newUser, confirmationCode, username, password) {
+  async confirmSignup(user, confirmationCode, username, password) {
     try {
-      let confirmation = await this.confirm(newUser, confirmationCode);
+      let confirmation = await this.confirm(user, confirmationCode);
       console.log('confirmation: ', confirmation);
-      state.auth.token = await this.authenticate(newUser, username, password);
+      state.auth.token = await this.authenticate(user, username, password);
       console.log('userToken: ', state);
     }
     catch(e) {
@@ -131,7 +132,13 @@ export class Login {
   async handleLogin(username, password) {
     try {
       state.auth.userToken = await this.login(username, password);
+      const userPool = new CognitoUserPool({
+        UserPoolId: config.cognito.USER_POOL_ID,
+        ClientId: config.cognito.APP_CLIENT_ID
+      });
+      state.auth.user = userPool.getCurrentUser();
       alert('Login success!');
+      router.navigate(`/restaurant/${state.auth.user.username}`);  // username is the same as the page route
     }
     catch(e) {
       alert(e);
@@ -158,6 +165,19 @@ export class Login {
         onFailure: (err) => reject(err),
       })
     ));
+  }
+
+  logout() {
+    const userPool = new CognitoUserPool({
+      UserPoolId: config.cognito.USER_POOL_ID,
+      ClientId: config.cognito.APP_CLIENT_ID
+    });
+    state.auth.user = userPool.getCurrentUser();
+    if (state.auth.user !== null) {
+      state.auth.user.signOut();
+      state.auth.user = null;
+      router.navigate('/login');
+    }    
   }
 
 
@@ -190,16 +210,18 @@ export class Login {
 
       <div id="mochi-background"></div>
       <div id="login-page-content">
-        <input id="login-email" type="email" placeholder="email">
+        <input id="login-restaurant" type="text" placeholder="restaurant">
         <input id="login-password" type="password" placeholder="password">
         <button id="login">login</button>
         <br><br>
-        <input id="register-email" type="email" placeholder="email">
+        <input id="register-restaurant" type="text" placeholder="restaurant">
         <input id="register-password" type="password" placeholder="password">
         <button id="register">register</button>
         <br><br>
         <input id="confcode" type="text" placeholder="confirmation code">
         <button id="confirm">confirm</button>
+        <br><br>
+        <button id="logout">logout</button>        
       </div>
     `;    
 

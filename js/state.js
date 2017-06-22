@@ -1,9 +1,8 @@
 export default {
   auth: {
-    newUser: null,
+    user: null,
     token: null,
     username: null,
-    password: null,
     confcode: null,
   }
 }

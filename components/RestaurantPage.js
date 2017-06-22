@@ -10,7 +10,7 @@ export class RestaurantPage {
   init() {
     // render the DOM before the init. Leave this first
     this.render();
-    this.mochiboxDemo.render();
+    this.mochiboxDemo.init();
 
     // close the mobile nav menu when a link is clicked
     $id('close-nav').onclick = () => this.closeMobileNav();
@@ -80,10 +80,12 @@ export class RestaurantPage {
             <div></div>
           </div>
           <div class="row-2-settings">
+            <!--
             <div class="popup-text-container">
               <h3 class="popup-text-label">TEXT:</h3><input id="popup-text" placeholder="Mochibox text goes here...">
-              <h3 class="popup-text-img">IMAGE:</h3>
             </div>
+            -->
+            <h3 class="save-and-publish">Save & Publish</h3>
             <div class="toggle-container">
               <label class="switch">
                 <input id="responsive-toggle" type="checkbox">
@@ -98,6 +100,13 @@ export class RestaurantPage {
         <div id="restaurant-page-site-container">
           <img id="restaurant-page-site" src="./components/restaurants/${ this.page }/${ this.page }-site-desktop.png">
         </div>
+        <!-- footer here, with css:
+          width: 100%;
+          background: #333333;
+          position: absolute;
+          left: -7%;
+          margin-top: 50px;
+        -->
       </div>
     `;    
 

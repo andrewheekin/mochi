@@ -26,11 +26,13 @@ export class RestaurantPage {
       if ($id('responsive-toggle').checked) {
         $id('restaurant-page-site').src = `./components/restaurants/${ this.page }/${ this.page }-site-mobile.png`;
         $id('restaurant-page-site').style = 'width: auto; height: 800px; display: block; margin: auto';
+        $id('restaurant-page-site-container').style.margin = 'margin: 0px 30px;';
       }
       // if desktop toggled
       else {
         $id('restaurant-page-site').src = `./components/restaurants/${ this.page }/${ this.page }-site-desktop.png`;
         $id('restaurant-page-site').style = 'width: 100%';
+        $id('restaurant-page-site-container').style.margin = 'margin: 0px 30px;';        
       }
     }
   }

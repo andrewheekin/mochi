@@ -1,19 +1,12 @@
-import { Navbar } from './Navbar';
-
 export class FrontPage {
-  constructor() {
-    this.navbar = new Navbar();
-  }
+  constructor() { }
 
-  init() {
-    this.navbar.init();
-  }
+  init() { }
   
   render() {
     let html = `
       <div id="front-page">
         <img class="front-img" src="../img/restaurant3.jpg">
-        ${ this.navbar.render() }
         <div class="main-txt">
           <h1 class="tagline">Keep customers up-to-date.</h1>
           <!-- <h3 class="slogan-description">Make announcements, update specials on your website as often as you want with a mochi box</h3> -->

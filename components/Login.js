@@ -3,15 +3,18 @@ import state from '../js/state';
 import { $id } from '../js/util';
 import config from '../js/config';
 import { router } from '../js/scripts';
+import { Navbar } from './Navbar';
 
 
 export class Login {
   constructor() {
-
+    this.navbar = new Navbar();
   }
 
   init() {
     this.render();  // leave this line first
+
+    this.navbar.init();
 
     $id('login').onclick = () => {
       state.auth.username = $id('login-restaurant').value;
@@ -183,31 +186,7 @@ export class Login {
 
   render() {
     let html = `
-      <nav id="login-page-navbar" class="navbar-scrolled">
-        <div id="nav-holder" class="nav-holder-scrolled">
-          <div id="logo" class="logo-scrolled"></div>
-          <div id="mochi" class="mochi-scrolled">mochibox</div>
-          <a class="nav-item" style="right:32%" href="">
-            <h3 class="nav-item">About</h3>
-          </a>
-          <a class="nav-item" style="right:23%" href="/login" data-navigo>
-            <h3 class="nav-item">Login</h3>
-          </a>
-          <a class="learn-more" href="">
-            <h3 id="learn-more" class="learn-more">Get a demo</h3>
-          </a>
-          <span id="hamburger">&#9776;</span>
-        </div>
-      </nav>
-
-      <!-- the mobile side nav -->
-      <div id="side-nav">
-        <span id="close-nav">&times;</span>
-        <a class="mobile-nav" href="#description-section">About</a>
-        <a class="mobile-nav" href="/login" data-navigo>Login</a>
-        <a class="mobile-nav" href="#signup">Demo</a>
-      </div>
-
+      ${ this.navbar.render() }
       <div id="mochi-background"></div>
       <div id="login-page-content">
         <input id="login-restaurant" type="text" placeholder="restaurant">

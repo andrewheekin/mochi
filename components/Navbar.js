@@ -1,10 +1,9 @@
-import { $id, $cl } from '../js/util';
+import throttle from 'lodash/throttle';
+import { $id, $cl, $on } from '../js/util';
 import { router } from '../js/scripts';
 
 export class Navbar {
-  constructor() {
-
-  }
+  constructor() { }
 
   init() {
     router.resolve();
@@ -14,8 +13,13 @@ export class Navbar {
     $cl('mobile-nav')[0].onclick = () => this.closeMobileNav();
     $cl('mobile-nav')[1].onclick = () => this.closeMobileNav();
     $cl('mobile-nav')[2].onclick = () => this.closeMobileNav();
+
     // open the mobile nav menu
     $id('hamburger').onclick = () => this.openMobileNav();
+
+    // check scroll height
+    $on('scroll', throttle(() => this.checkScroll(), 100));
+    $on('load', () => this.checkScroll());
   }
 
   openMobileNav() {
@@ -25,13 +29,56 @@ export class Navbar {
   closeMobileNav() {
     $id('side-nav').style.width = '0px';
   }
+
+  checkScroll() {
+    // if on the splash page
+    if (window.location.pathname == '/' || window.location.pathname == '/home') {
+      // if scrolled past main page, make the "learn more" box colored fusia
+      if (window.scrollY >= 700) {
+        $id('learn-more').className = 'learn-more-scrolled'
+      }
+      else if (window.scrollY < 700) {
+        $id('learn-more').className = 'learn-more'
+      }
+
+      // if scrolled past 20px, change navbar
+      if (window.scrollY >= 20) {
+        $id('navbar').className = 'navbar-scrolled';
+        $id('nav-holder').className = 'nav-holder-scrolled';
+        $id('logo').className = 'logo-scrolled';
+        $id('mochi').className = 'mochi-scrolled';
+      }
+      else if (window.scrollY < 20) {
+        $id('navbar').className = 'navbar';
+        $id('nav-holder').className = 'nav-holder';
+        $id('logo').className = 'logo';
+        $id('mochi').className = 'mochi';
+      }
+    }
+
+    else if (window.location.pathname == '/login') {
+      $id('navbar').className = 'navbar-scrolled';
+      $id('nav-holder').className = 'nav-holder-scrolled';
+      $id('logo').className = 'logo-scrolled';
+      $id('mochi').className = 'mochi-scrolled';   
+    }
+
+    else if (window.location.pathname.includes('/restaurant')) {
+      $id('navbar').className = 'navbar-scrolled';
+      $id('nav-holder').className = 'nav-holder-scrolled';
+      $id('logo').className = 'logo-scrolled';
+      $id('mochi').className = 'mochi-scrolled';   
+    }
+  }
   
   render() {
     let html = `
       <nav id="navbar" class="navbar">
         <div id="nav-holder" class="nav-holder">
-          <div id="logo" class="logo"></div>
-          <div id="mochi" class="mochi">mochibox</div>
+          <a class="logo-container" href="/" data-navigo>          
+            <div id="logo" class="logo"></div>
+            <div id="mochi" class="mochi">mochibox</div>
+          </a>
           <a class="nav-item" style="right:32%" href="#description-section">
             <h3 class="nav-item">About</h3>
           </a>

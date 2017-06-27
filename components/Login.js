@@ -18,14 +18,12 @@ export class Login {
 
     $id('login').onclick = () => {
       state.auth.username = $id('login-restaurant').value;
-      console.log('state', state);
       this.handleLogin(state.auth.username, $id('login-password').value);
     }
 
     $id('register').onclick = () => {
       state.auth.username = $id('register-restaurant').value;
-      console.log('state', state);
-      this.createUser(state.auth.username, $id('register-password').value);
+      this.createUser(state.auth.username, $id('register-password').value);  // password isn't stored in state
     }
 
     // $id('confirm').onclick = () => {
@@ -40,12 +38,7 @@ export class Login {
     document.onkeydown = (e) => {
       if (e.keyCode == 49) {
         console.log('state: ', state);
-
-        const userPool = new CognitoUserPool({
-          UserPoolId: config.cognito.USER_POOL_ID,
-          ClientId: config.cognito.APP_CLIENT_ID
-        });
-        let cognitoUser = userPool.getCurrentUser();
+        let cognitoUser = state.auth.userPool.getCurrentUser(); // not async
         console.log('cognitoUser: ', cognitoUser);
         if (cognitoUser != null) {
           cognitoUser.getSession(function(err, session) {
@@ -63,27 +56,19 @@ export class Login {
   }
 
   async createUser(username, password) {
-    console.log('in createUser: ', username, password);
     try {
       state.auth.user = await this.signup(username, password);
-      console.log('user: ', state);
     }
     catch(e) {
-      console.log('error in createUser');
-      alert(e);
+      throw new Error('Error in createUser: ' + e);
     }  
   }
 
   signup(username, password) {
-    const userPool = new CognitoUserPool({
-      UserPoolId: config.cognito.USER_POOL_ID,
-      ClientId: config.cognito.APP_CLIENT_ID
-    });
-    console.log('in signup: ', userPool);
-    const attributeName= new CognitoUserAttribute({ Name : 'name', Value : username });
+    const attributeName = new CognitoUserAttribute({ Name : 'name', Value : username });
 
     return new Promise((resolve, reject) => (
-      userPool.signUp(username, password, [attributeName], null, (err, result) => {
+      state.auth.userPool.signUp(username, password, [attributeName], null, (err, result) => {
         if (err) {
           reject(err);
           return;
@@ -118,11 +103,7 @@ export class Login {
   // }
 
   authenticate(user, username, password) {
-    const authenticationData = {
-      Username: username,
-      Password: password
-    };
-    const authenticationDetails = new AuthenticationDetails(authenticationData);
+    const authenticationDetails = new AuthenticationDetails({ Username: username, Password: password });
 
     return new Promise((resolve, reject) => (
       user.authenticateUser(authenticationDetails, {
@@ -135,32 +116,18 @@ export class Login {
   async handleLogin(username, password) {
     try {
       state.auth.userToken = await this.login(username, password);
-      const userPool = new CognitoUserPool({
-        UserPoolId: config.cognito.USER_POOL_ID,
-        ClientId: config.cognito.APP_CLIENT_ID
-      });
-      state.auth.user = userPool.getCurrentUser();
-      alert('Login success!');
+      state.auth.user = state.auth.userPool.getCurrentUser(); // not async
+      console.log('Login success!', state);
       router.navigate(`/restaurant/${state.auth.user.username}`);  // username is the same as the page route
     }
     catch(e) {
-      alert(e);
-      alert('Login fail!');
+      throw new Error('Login fail! ' + e);
     }
   }
 
   login(username, password) {
-    const userPool = new CognitoUserPool({
-      UserPoolId: config.cognito.USER_POOL_ID,
-      ClientId: config.cognito.APP_CLIENT_ID
-    });
-    const authenticationData = {
-      Username: username,
-      Password: password
-    };
-
-    const user = new CognitoUser({ Username: username, Pool: userPool });
-    const authenticationDetails = new AuthenticationDetails(authenticationData);
+    const user = new CognitoUser({ Username: username, Pool: state.auth.userPool });
+    const authenticationDetails = new AuthenticationDetails({ Username: username, Password: password });
 
     return new Promise((resolve, reject) => (
       user.authenticateUser(authenticationDetails, {
@@ -171,11 +138,7 @@ export class Login {
   }
 
   logout() {
-    const userPool = new CognitoUserPool({
-      UserPoolId: config.cognito.USER_POOL_ID,
-      ClientId: config.cognito.APP_CLIENT_ID
-    });
-    state.auth.user = userPool.getCurrentUser();
+    state.auth.user = state.auth.userPool.getCurrentUser();  // not async
     if (state.auth.user !== null) {
       state.auth.user.signOut();
       state.auth.user = null;

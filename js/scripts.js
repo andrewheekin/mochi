@@ -16,9 +16,15 @@ let login = new Login();
 // let router = new Navigo(null, true, '#!'); // using hash
 let router = new Navigo(null, false); // using HTML5 History API
 
-// route with before hook
+// restaurant page route with before hook
 router.on('restaurant/:name', (params) => { let restaurantPage = new RestaurantPage(params.name); restaurantPage.init(); },
               { before: (done, params) => { authenticate(done, params) }});
+
+// login page route with before hook
+router.on('login', () => { login.init() },
+     { before: (done) => {
+        if (Login.getCurrentUser()) { done(false); router.navigate(`/restaurant/${state.auth.user.username}`) }
+        else done(); }});
 
 // routes without hooks
 router.on({

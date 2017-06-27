@@ -21,10 +21,10 @@ export class Login {
       this.handleLogin(state.auth.username, $id('login-password').value);
     }
 
-    $id('register').onclick = () => {
-      state.auth.username = $id('register-restaurant').value;
-      this.createUser(state.auth.username, $id('register-password').value);  // password isn't stored in state
-    }
+    // $id('register').onclick = () => {
+    //   state.auth.username = $id('register-restaurant').value;
+    //   this.createUser(state.auth.username, $id('register-password').value);  // password isn't stored in state
+    // }
 
     // $id('confirm').onclick = () => {
     //   state.confcode = $id('confcode').value;
@@ -32,7 +32,7 @@ export class Login {
     //   this.confirmSignup(state.auth.user, state.auth.confcode, state.auth.username, $id('register-password').value);
     // }
 
-    $id('logout').onclick = () => this.logout();   
+    // $id('logout').onclick = () => this.logout();   
 
     // press 1 to see the state
     document.onkeydown = (e) => {
@@ -54,6 +54,11 @@ export class Login {
     }
 
   }
+
+  static getCurrentUser() {
+    state.auth.user = state.auth.userPool.getCurrentUser()
+    return state.auth.user;
+  }  
 
   async createUser(username, password) {
     try {
@@ -146,24 +151,32 @@ export class Login {
     }    
   }
 
+  renderLoggedOut() {
+    let html = `
+    
+    `;
+    return html;
+  } 
 
   render() {
     let html = `
-      ${ this.navbar.render() }
+      ${ this.navbar.render() }      
       <div id="mochi-background"></div>
       <div id="login-page-content">
         <input id="login-restaurant" type="text" placeholder="restaurant">
         <input id="login-password" type="password" placeholder="password">
         <button id="login">login</button>
-        <br><br>
+        <br>
+        <!--
         <input id="register-restaurant" type="text" placeholder="restaurant">
         <input id="register-password" type="password" placeholder="password">
         <button id="register">register</button>
-        <br><br>
+        <br>
         <input id="confcode" type="text" placeholder="confirmation code">
         <button id="confirm">confirm</button>
-        <br><br>
-        <button id="logout">logout</button>        
+        <br>
+        <button id="logout">logout</button>
+        -->
       </div>
     `;    
 

@@ -100,6 +100,14 @@
   transition: all .2s linear;
 }
 
+.right-links {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  position: absolute;
+  right: 9%;
+}
+
 #hamburger {
   @media #{$desktop} {
     display: none;
@@ -152,8 +160,6 @@
 }
 
 a.learn-more {
-  position: absolute;
-  right: 9%;
   text-decoration: none;
 }
 
@@ -233,7 +239,8 @@ a.logo-container {
 }
 
 a.nav-item {
-  position: absolute;
+  display: flex;
+  align-items: center;
   text-decoration: none;
 }
 

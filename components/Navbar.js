@@ -10,7 +10,7 @@ export class Navbar {
 
   init() {
     router.resolve();
-    this.getCurrentUser();  // update the user in the state object
+    Login.getCurrentUser();  // update the user in the state object
 
     if (window.location.pathname == '/' || window.location.pathname == '/home') { // 3 links on home mobile nav
       $cl('mobile-nav')[0].onclick = () => this.closeMobileNav();
@@ -81,25 +81,20 @@ export class Navbar {
     $id('mochi').className = 'mochi';    
   }
 
-  getCurrentUser() {
-    state.auth.user = state.auth.userPool.getCurrentUser()
-    return state.auth.user;
-  }
-
   renderLoggedInDesktop() {
     let html = `
-      <a class="nav-item" style="right:23%" href="/login" data-navigo>
-        <h3 id="nav-logout" class="nav-item">Logout</h3>
+      <a class="nav-item" href="/home" data-navigo>
+        <h3 id="nav-logout" class="nav-item" style="padding-right:28px">Logout</h3>
       </a>
-      <a class="nav-item" style="right:9%" href="/restaurant/${state.auth.user.username}">
-        <h3 class="nav-item">Hello, ${state.auth.user.username}</h3>
+      <a class="nav-item" href="/restaurant/${state.auth.user.username}">
+        <h3 class="nav-item" style="padding-right:10px">Hello, ${state.auth.user.username}</h3>
         <img class="nav-logo" src="./components/restaurants/${state.auth.user.username}/${state.auth.user.username}-logo.png">
       </a>
     `;
 
     if (window.location.pathname == '/' || window.location.pathname == '/home') {
       html = `
-        <a class="nav-item" style="right:32%" href="/home#description-section">
+        <a class="nav-item" href="/home#description-section">
           <h3 class="nav-item">About</h3>
         </a>
       ` + html;
@@ -110,20 +105,29 @@ export class Navbar {
 
   renderLoggedOutDesktop() {
     let html = `
-      <a class="nav-item" style="right:23%" href="/login" data-navigo>
-        <h3 class="nav-item">Login</h3>
-      </a>
-      <a class="learn-more" href="#signup">
-        <h3 id="learn-more" class="learn-more">Get a demo</h3>
+      <a class="nav-item" href="/login" data-navigo>
+        <h3 class="nav-item" style="padding-right:55px">Login</h3>
       </a>
     `;
 
     if (window.location.pathname == '/' || window.location.pathname == '/home') {
       html = `
-        <a class="nav-item" style="right:32%" href="/home#description-section">
+        <a class="nav-item" href="/home#description-section">
           <h3 class="nav-item">About</h3>
         </a>
-      ` + html;
+      ` + html + `
+        <a class="learn-more" href="#signup">
+          <h3 id="learn-more" class="learn-more">Get a demo</h3>
+        </a>
+      `;
+    }
+    else if (window.location.pathname == '/login' || window.location.pathname.includes('/restaurant')) {
+      // need the double hash (##) since navigo router automatically removes the first one...
+      html += `
+        <a class="learn-more" href="##signup">
+          <h3 id="learn-more" class="learn-more">Get a demo</h3>
+        </a>
+      `;
     }
 
     return html;
@@ -132,7 +136,7 @@ export class Navbar {
   renderLoggedInMobile() {
     let html = `
       <a class="mobile-nav" href="/restaurant/${state.auth.user.username}">Hello, ${state.auth.user.username}</a>
-      <a id="nav-logout" class="mobile-nav" href="/login" data-navigo>Logout</a>
+      <a id="nav-logout" class="mobile-nav" href="/home" data-navigo>Logout</a>
     `;
 
     if (window.location.pathname == '/' || window.location.pathname == '/home') { // add "about" when on home
@@ -160,7 +164,9 @@ export class Navbar {
             <div id="logo" class="logo"></div>
             <div id="mochi" class="mochi">mochibox</div>
           </a>
-          ${ this.getCurrentUser() ? this.renderLoggedInDesktop() : this.renderLoggedOutDesktop() }
+          <div class="right-links">
+            ${ Login.getCurrentUser() ? this.renderLoggedInDesktop() : this.renderLoggedOutDesktop() }
+          </div>
           <span id="hamburger">&#9776;</span>
         </div>
       </nav>
@@ -168,7 +174,7 @@ export class Navbar {
       <!-- the mobile side nav -->
       <div id="side-nav">
         <span id="close-nav">&times;</span>
-        ${ this.getCurrentUser() ? this.renderLoggedInMobile() : this.renderLoggedOutMobile() }
+        ${ Login.getCurrentUser() ? this.renderLoggedInMobile() : this.renderLoggedOutMobile() }
       </div>      
     `;
     return html;

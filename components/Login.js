@@ -28,11 +28,11 @@ export class Login {
       this.createUser(state.auth.username, $id('register-password').value);
     }
 
-    $id('confirm').onclick = () => {
-      state.confcode = $id('confcode').value;
-      console.log('in confirm onclick, args: ', state);
-      this.confirmSignup(state.auth.user, state.auth.confcode, state.auth.username, $id('register-password').value);
-    }
+    // $id('confirm').onclick = () => {
+    //   state.confcode = $id('confcode').value;
+    //   console.log('in confirm onclick, args: ', state);
+    //   this.confirmSignup(state.auth.user, state.auth.confcode, state.auth.username, $id('register-password').value);
+    // }
 
     $id('logout').onclick = () => this.logout();   
 
@@ -93,29 +93,29 @@ export class Login {
     ));
   }
 
-  async confirmSignup(user, confirmationCode, username, password) {
-    try {
-      let confirmation = await this.confirm(user, confirmationCode);
-      console.log('confirmation: ', confirmation);
-      state.auth.token = await this.authenticate(user, username, password);
-      console.log('userToken: ', state);
-    }
-    catch(e) {
-      alert(e);
-    }
-  }
+  // async confirmSignup(user, confirmationCode, username, password) {
+  //   try {
+  //     let confirmation = await this.confirm(user, confirmationCode);
+  //     console.log('confirmation: ', confirmation);
+  //     state.auth.token = await this.authenticate(user, username, password);
+  //     console.log('userToken: ', state);
+  //   }
+  //   catch(e) {
+  //     alert(e);
+  //   }
+  // }
 
-  confirm(user, confirmationCode) {
-    return new Promise((resolve, reject) => (
-      user.confirmRegistration(confirmationCode, true, (err, result) => {
-        if (err) {
-          reject(err);
-          return;
-        }
-        resolve(result);
-      })
-    ));
-  }
+  // confirm(user, confirmationCode) {
+  //   return new Promise((resolve, reject) => (
+  //     user.confirmRegistration(confirmationCode, true, (err, result) => {
+  //       if (err) {
+  //         reject(err);
+  //         return;
+  //       }
+  //       resolve(result);
+  //     })
+  //   ));
+  // }
 
   authenticate(user, username, password) {
     const authenticationData = {

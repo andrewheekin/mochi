@@ -1,16 +1,19 @@
 import { $id, $cl } from '../js/util';
 import { MochiboxDemo } from './MochiboxDemo';
+import { Navbar } from './Navbar';
 
 export class RestaurantPage {
   constructor(name) {
     this.page = name;
     this.mochiboxDemo = new MochiboxDemo(name);
+    this.navbar = new Navbar();
   }
 
   init() {
     // render the DOM before the init. Leave this first
     this.render();
     this.mochiboxDemo.init();
+    this.navbar.init();
 
     // close the mobile nav menu when a link is clicked
     $id('close-nav').onclick = () => this.closeMobileNav();
@@ -47,31 +50,7 @@ export class RestaurantPage {
 
   render() {
     let html = `
-      <nav id="restaurant-page-navbar" class="navbar-scrolled">
-        <div id="nav-holder" class="nav-holder-scrolled">
-          <div id="logo" class="logo-scrolled"></div>
-          <div id="mochi" class="mochi-scrolled">mochibox</div>
-          <a class="nav-item" style="right:32%" href="">
-            <h3 class="nav-item">About</h3>
-          </a>
-          <a class="nav-item" style="right:23%" href="/login" data-navigo>
-            <h3 class="nav-item">Login</h3>
-          </a>
-          <a class="learn-more" href="">
-            <h3 id="learn-more" class="learn-more">Get a demo</h3>
-          </a>
-          <span id="hamburger">&#9776;</span>
-        </div>
-      </nav>
-
-      <!-- the mobile side nav -->
-      <div id="side-nav">
-        <span id="close-nav">&times;</span>
-        <a class="mobile-nav" href="#description-section">About</a>
-        <a class="mobile-nav" href="/login" data-navigo>Login</a>
-        <a class="mobile-nav" href="#signup">Demo</a>
-      </div>
-
+      ${ this.navbar.render() }
       <div id="mochi-background"></div>
       <div id="restaurant-page-content">
         <div class="restaurant-page-logo-container">

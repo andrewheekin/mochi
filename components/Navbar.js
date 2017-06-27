@@ -20,6 +20,8 @@ export class Navbar {
     // check scroll height
     $on('scroll', throttle(() => this.checkScroll(), 100));
     $on('load', () => this.checkScroll());
+
+    
   }
 
   openMobileNav() {

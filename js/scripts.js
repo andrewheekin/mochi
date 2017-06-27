@@ -6,6 +6,7 @@ import { SplashSite } from '../components/SplashSite';
 import { RestaurantPage } from '../components/RestaurantPage';
 import { Login } from '../components/Login';
 import config from './config';
+import state from './state';
 
 
 let splashSite = new SplashSite();  // generate the homepage
@@ -35,12 +36,8 @@ router.notFound((query) => { /*router.navigate('/home');*/ console.log('page not
 router.resolve();
 
 function authenticate(done, params) {
-  const userPool = new CognitoUserPool({
-    UserPoolId: config.cognito.USER_POOL_ID,
-    ClientId: config.cognito.APP_CLIENT_ID
-  });
 
-  let cognitoUser = userPool.getCurrentUser();
+  let cognitoUser = state.auth.userPool.getCurrentUser();
   console.log('cognitoUser: ', cognitoUser);
 
   if (cognitoUser != null) {

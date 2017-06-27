@@ -137,12 +137,12 @@ export class Login {
     ));
   }
 
-  logout() {
+  static logout() {
     state.auth.user = state.auth.userPool.getCurrentUser();  // not async
     if (state.auth.user !== null) {
       state.auth.user.signOut();
       state.auth.user = null;
-      router.navigate('/login');
+      router.navigate('/home');
     }    
   }
 

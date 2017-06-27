@@ -15,14 +15,6 @@ export class RestaurantPage {
     this.mochiboxDemo.init();
     this.navbar.init();
 
-    // close the mobile nav menu when a link is clicked
-    $id('close-nav').onclick = () => this.closeMobileNav();
-    $cl('mobile-nav')[0].onclick = () => this.closeMobileNav();
-    $cl('mobile-nav')[1].onclick = () => this.closeMobileNav();
-    $cl('mobile-nav')[2].onclick = () => this.closeMobileNav();
-    // open the mobile nav menu
-    $id('hamburger').onclick = () => this.openMobileNav();
-
     // monitor the desktop vs mobile toggle and show the right screenshot
     $id('responsive-toggle').onchange = (e) => {
       // if mobile toggled
@@ -38,14 +30,6 @@ export class RestaurantPage {
         $id('restaurant-page-site-container').style.margin = 'margin: 0px 30px;';        
       }
     }
-  }
-
-  openMobileNav() {
-    $id('side-nav').style.width = '160px';
-  }
-
-  closeMobileNav() {
-    $id('side-nav').style.width = '0px';
   }
 
   render() {

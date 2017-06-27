@@ -1,27 +1,43 @@
 import throttle from 'lodash/throttle';
 import { $id, $cl, $on } from '../js/util';
 import { router } from '../js/scripts';
+import state from '../js/state';
+import { Login } from './Login';
 
+// Navbar states: Logged in vs logged out & page location
 export class Navbar {
   constructor() { }
 
   init() {
     router.resolve();
+    this.getCurrentUser();  // update the user in the state object
+
+    if (window.location.pathname == '/' || window.location.pathname == '/home') { // 3 links on home mobile nav
+      $cl('mobile-nav')[0].onclick = () => this.closeMobileNav();
+      $cl('mobile-nav')[1].onclick = () => this.closeMobileNav();
+      $cl('mobile-nav')[2].onclick = () => this.closeMobileNav();
+    }
+    else if (window.location.pathname == '/login' || window.location.pathname.includes('/restaurant')) { // only 2 links on other mobile navs
+      $cl('mobile-nav')[0].onclick = () => this.closeMobileNav();
+      $cl('mobile-nav')[1].onclick = () => this.closeMobileNav();
+    }
 
     // close the mobile nav menu when a link is clicked
     $id('close-nav').onclick = () => this.closeMobileNav();
-    $cl('mobile-nav')[0].onclick = () => this.closeMobileNav();
-    $cl('mobile-nav')[1].onclick = () => this.closeMobileNav();
-    $cl('mobile-nav')[2].onclick = () => this.closeMobileNav();
 
     // open the mobile nav menu
     $id('hamburger').onclick = () => this.openMobileNav();
 
     // check scroll height
-    $on('scroll', throttle(() => this.checkScroll(), 100));
-    $on('load', () => this.checkScroll());
+    this.checkScroll();  // when script is executed
+    $on('load', () => this.checkScroll());  // and when document loads
+    $on('scroll', throttle(() => this.checkScroll(), 100));  // and on scroll, duh
 
-    
+    if (state.auth.user) {  // init for logged in user
+      $id('nav-logout').onclick = () => Login.logout();      
+    }
+    else {  }// init for no logged in user
+
   }
 
   openMobileNav() {
@@ -32,47 +48,110 @@ export class Navbar {
     $id('side-nav').style.width = '0px';
   }
 
-  checkScroll() {
-    // if on the splash page
-    if (window.location.pathname == '/' || window.location.pathname == '/home') {
-      // if scrolled past main page, make the "learn more" box colored fusia
-      if (window.scrollY >= 700) {
-        $id('learn-more').className = 'learn-more-scrolled'
-      }
-      else if (window.scrollY < 700) {
-        $id('learn-more').className = 'learn-more'
-      }
+  checkScroll() { // scroll/unscroll navbar and color/grey-out the learn more button
+    if (window.location.pathname == '/' || window.location.pathname == '/home') {  // splash page
+  
+      if (state.auth.user == null) {  // logged out user
+        // if scrolled past main page, make the "learn more" box colored fusia
+        if (window.scrollY >= 700) $id('learn-more').className = 'learn-more-scrolled'
+        else if (window.scrollY < 700) $id('learn-more').className = 'learn-more'
+      }    
 
       // if scrolled past 20px, change navbar
-      if (window.scrollY >= 20) {
-        $id('navbar').className = 'navbar-scrolled';
-        $id('nav-holder').className = 'nav-holder-scrolled';
-        $id('logo').className = 'logo-scrolled';
-        $id('mochi').className = 'mochi-scrolled';
-      }
-      else if (window.scrollY < 20) {
-        $id('navbar').className = 'navbar';
-        $id('nav-holder').className = 'nav-holder';
-        $id('logo').className = 'logo';
-        $id('mochi').className = 'mochi';
-      }
+      if (window.scrollY >= 20) this.scrolled();
+      else if (window.scrollY < 20) this.unscrolled();
     }
 
-    else if (window.location.pathname == '/login') {
-      $id('navbar').className = 'navbar-scrolled';
-      $id('nav-holder').className = 'nav-holder-scrolled';
-      $id('logo').className = 'logo-scrolled';
-      $id('mochi').className = 'mochi-scrolled';   
-    }
-
-    else if (window.location.pathname.includes('/restaurant')) {
-      $id('navbar').className = 'navbar-scrolled';
-      $id('nav-holder').className = 'nav-holder-scrolled';
-      $id('logo').className = 'logo-scrolled';
-      $id('mochi').className = 'mochi-scrolled';   
+    else if (window.location.pathname == '/login' || window.location.pathname.includes('/restaurant')) {
+      this.scrolled();
     }
   }
+
+  scrolled() {
+    $id('navbar').className = 'navbar-scrolled';
+    $id('nav-holder').className = 'nav-holder-scrolled';
+    $id('logo').className = 'logo-scrolled';
+    $id('mochi').className = 'mochi-scrolled';    
+  }
+
+  unscrolled() {
+    $id('navbar').className = 'navbar';
+    $id('nav-holder').className = 'nav-holder';
+    $id('logo').className = 'logo';
+    $id('mochi').className = 'mochi';    
+  }
+
+  getCurrentUser() {
+    state.auth.user = state.auth.userPool.getCurrentUser()
+    return state.auth.user;
+  }
+
+  renderLoggedInDesktop() {
+    let html = `
+      <a class="nav-item" style="right:23%" href="/login" data-navigo>
+        <h3 id="nav-logout" class="nav-item">Logout</h3>
+      </a>
+      <a class="nav-item" style="right:9%" href="/restaurant/${state.auth.user.username}">
+        <h3 class="nav-item">Hello, ${state.auth.user.username}</h3>
+        <img class="nav-logo" src="./components/restaurants/${state.auth.user.username}/${state.auth.user.username}-logo.png">
+      </a>
+    `;
+
+    if (window.location.pathname == '/' || window.location.pathname == '/home') {
+      html = `
+        <a class="nav-item" style="right:32%" href="/home#description-section">
+          <h3 class="nav-item">About</h3>
+        </a>
+      ` + html;
+    }
+
+    return html;
+  }
+
+  renderLoggedOutDesktop() {
+    let html = `
+      <a class="nav-item" style="right:23%" href="/login" data-navigo>
+        <h3 class="nav-item">Login</h3>
+      </a>
+      <a class="learn-more" href="#signup">
+        <h3 id="learn-more" class="learn-more">Get a demo</h3>
+      </a>
+    `;
+
+    if (window.location.pathname == '/' || window.location.pathname == '/home') {
+      html = `
+        <a class="nav-item" style="right:32%" href="/home#description-section">
+          <h3 class="nav-item">About</h3>
+        </a>
+      ` + html;
+    }
+
+    return html;
+  }  
   
+  renderLoggedInMobile() {
+    let html = `
+      <a class="mobile-nav" href="/restaurant/${state.auth.user.username}">Hello, ${state.auth.user.username}</a>
+      <a id="nav-logout" class="mobile-nav" href="/login" data-navigo>Logout</a>
+    `;
+
+    if (window.location.pathname == '/' || window.location.pathname == '/home') { // add "about" when on home
+      html = `
+        <a class="mobile-nav" href="#description-section">About</a>
+      ` + html;
+    }
+    return html;
+  }
+  
+  renderLoggedOutMobile() {
+    let html = `
+      <a class="mobile-nav" href="#description-section">About</a>
+      <a class="mobile-nav" href="/login" data-navigo>Login</a>
+      <a class="mobile-nav" href="#signup">Demo</a>      
+    `;
+    return html;
+  }  
+
   render() {
     let html = `
       <nav id="navbar" class="navbar">
@@ -81,15 +160,7 @@ export class Navbar {
             <div id="logo" class="logo"></div>
             <div id="mochi" class="mochi">mochibox</div>
           </a>
-          <a class="nav-item" style="right:32%" href="#description-section">
-            <h3 class="nav-item">About</h3>
-          </a>
-          <a class="nav-item" style="right:23%" href="/login" data-navigo>
-            <h3 class="nav-item">Login</h3>
-          </a>
-          <a class="learn-more" href="#signup">
-            <h3 id="learn-more" class="learn-more">Get a demo</h3>
-          </a>
+          ${ this.getCurrentUser() ? this.renderLoggedInDesktop() : this.renderLoggedOutDesktop() }
           <span id="hamburger">&#9776;</span>
         </div>
       </nav>
@@ -97,9 +168,7 @@ export class Navbar {
       <!-- the mobile side nav -->
       <div id="side-nav">
         <span id="close-nav">&times;</span>
-        <a class="mobile-nav" href="#description-section">About</a>
-        <a class="mobile-nav" href="/login" data-navigo>Login</a>
-        <a class="mobile-nav" href="#signup">Demo</a>
+        ${ this.getCurrentUser() ? this.renderLoggedInMobile() : this.renderLoggedOutMobile() }
       </div>      
     `;
     return html;

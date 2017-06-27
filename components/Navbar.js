@@ -149,10 +149,20 @@ export class Navbar {
   
   renderLoggedOutMobile() {
     let html = `
-      <a class="mobile-nav" href="#description-section">About</a>
       <a class="mobile-nav" href="/login" data-navigo>Login</a>
-      <a class="mobile-nav" href="#signup">Demo</a>      
     `;
+
+    if (window.location.pathname == '/' || window.location.pathname == '/home') { // add "about" when on home
+      html = `
+        <a class="mobile-nav" href="#description-section">About</a>
+        <a class="mobile-nav" href="#signup">Demo</a>        
+      ` + html;
+    }
+    else if (window.location.pathname == '/login' || window.location.pathname.includes('/restaurant')) {
+      html += `
+        <a class="mobile-nav" href="/home" data-navigo>Home</a>
+      `;
+    }
     return html;
   }  
 

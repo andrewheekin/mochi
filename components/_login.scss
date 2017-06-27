@@ -1,8 +1,93 @@
 #login-page-content {
   position: absolute;
-  background: rgba(186, 186, 186, 0.5);
-  width: 87%;
-  margin: 85px 6% 30px;
-  border-radius: 5px;
-  padding: 20px;
+  display: flex;
+  justify-content: center;
+  width: 100%;
 }
+
+.login-container {
+  font-family: 'Cabin', sans-serif!important;
+  display: flex;
+  flex-direction: column;
+  border-radius: 5px;
+  margin-top: 175px;
+  @media #{$desktop} {
+    padding: 30px 150px;
+  }
+}
+
+.login-logo-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-decoration: none;
+  margin-bottom: 10px;
+}
+
+.mochi-login {
+  color: white;
+  font-size: 2.9em;
+  margin-left: 8px;
+  letter-spacing: .04em;
+  transition: font-size .2s linear;
+  user-select: none;
+  -webkit-user-select: none;
+}
+
+.login-input {
+  font-size: .9em;
+  border: none;
+  padding: 10px 15px;
+  border-radius: 4px;
+  margin-top: 20px;
+  transition: background-color 0.3s;
+  -webkit-transition: background-color 0.3s;
+  -moz-transition: background-color 0.3s;  
+  &:hover {
+    background: #f8f4f4;
+    transition: background-color 0.3s;
+    -webkit-transition: background-color 0.3s;
+    -moz-transition: background-color 0.3s;
+  }
+  &:focus {
+    outline: none;
+  }  
+}
+
+#login-button {
+  background: #e3516c;
+  border: none;
+  border-radius: 6px;
+  margin-top: 30px;
+  padding: 11px 24px;
+  font-size: 1em;  
+  transition: background-color 0.3s;
+  -webkit-transition: background-color 0.3s;
+  -moz-transition: background-color 0.3s;
+  color: white;
+  font-weight: 400;
+  text-transform: uppercase;
+  letter-spacing: .1em;
+  user-select: none;
+  -webkit-user-select: none;  
+  cursor: pointer;
+  &:hover {
+    background: #e97a8e;
+    transition: background-color 0.3s;
+    -webkit-transition: background-color 0.3s;
+    -moz-transition: background-color 0.3s;
+    -o-transition:background-color 0.3s;    
+  }
+  &:active {
+    background: #db9aa6;    
+  }
+  &:focus {
+    outline: none;
+  }
+}
+
+.pass-reqs {
+  font-size: 0.8em;
+  color: white  
+}
+

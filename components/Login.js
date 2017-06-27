@@ -16,9 +16,9 @@ export class Login {
 
     this.navbar.init();
 
-    $id('login').onclick = () => {
-      state.auth.username = $id('login-restaurant').value;
-      this.handleLogin(state.auth.username, $id('login-password').value);
+    $id('login-button').onclick = () => {
+      state.auth.username = $id('login-restaurant').value.trim();
+      this.handleLogin(state.auth.username, $id('login-password').value.trim());
     }
 
     // $id('register').onclick = () => {
@@ -37,19 +37,8 @@ export class Login {
     // press 1 to see the state
     document.onkeydown = (e) => {
       if (e.keyCode == 49) {
+        state.auth.user = state.auth.userPool.getCurrentUser(); // not async
         console.log('state: ', state);
-        let cognitoUser = state.auth.userPool.getCurrentUser(); // not async
-        console.log('cognitoUser: ', cognitoUser);
-        if (cognitoUser != null) {
-          cognitoUser.getSession(function(err, session) {
-            if (err) {
-              alert(err);
-              return;
-            }
-            console.log('session: ' + session);                
-            console.log('session validity: ' + session.isValid());
-          });
-        }
       }   
     }
 
@@ -163,20 +152,27 @@ export class Login {
       ${ this.navbar.render() }      
       <div id="mochi-background"></div>
       <div id="login-page-content">
-        <input id="login-restaurant" type="text" placeholder="restaurant">
-        <input id="login-password" type="password" placeholder="password">
-        <button id="login">login</button>
-        <br>
-        <!--
-        <input id="register-restaurant" type="text" placeholder="restaurant">
-        <input id="register-password" type="password" placeholder="password">
-        <button id="register">register</button>
-        <br>
-        <input id="confcode" type="text" placeholder="confirmation code">
-        <button id="confirm">confirm</button>
-        <br>
-        <button id="logout">logout</button>
-        -->
+        <div class="login-container">
+          <div class="login-logo-container" href="/" data-navigo>          
+            <div id="logo" class="logo"></div>
+            <div id="mochi" class="mochi-login">mochibox</div>
+          </div>        
+          <input id="login-restaurant" class="login-input" type="text" placeholder="Restaurant...">
+          <input id="login-password" class="login-input" type="password" placeholder="Password...">
+          <div class="pass-reqs"><sup>*</sup>8 characters min, a number, an upper and lowercase letter...</div>
+          <button id="login-button">login</button>
+          <br>
+          <!--
+          <input id="register-restaurant" type="text" placeholder="restaurant">
+          <input id="register-password" type="password" placeholder="password">
+          <button id="register">register</button>
+          <br>
+          <input id="confcode" type="text" placeholder="confirmation code">
+          <button id="confirm">confirm</button>
+          <br>
+          <button id="logout">logout</button>
+          -->
+        </div>
       </div>
     `;    
 

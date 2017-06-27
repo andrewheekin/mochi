@@ -37,7 +37,7 @@ router.on({
 router.on(() => { splashSite.init() });
 
 // 404 route
-router.notFound((query) => { /*router.navigate('/home');*/ console.log('page not found'); })
+router.notFound((query) => { router.navigate('/home'); console.log('page not found'); })
 
 router.resolve();
 

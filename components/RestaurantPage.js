@@ -19,18 +19,19 @@ export class RestaurantPage {
     $id('copy-script-btn').onclick = () => {}
 
     // Show/hide popup based on toggle click
-    $id('toggle-button').onclick = () => {}    
+    $id('toggle-demo').onclick = () => {
+      if ($id('toggle-demo-text').innerText == 'SHOW') this.mochiboxDemo.showPopup();
+      else if ($id('toggle-demo-text').innerText == 'HIDE') this.mochiboxDemo.hidePopup();
+    }       
 
     // monitor the desktop vs mobile toggle and show the right screenshot
     $id('responsive-toggle').onchange = (e) => {
-      // if mobile toggled
-      if ($id('responsive-toggle').checked) {
+      if ($id('responsive-toggle').checked) { // if mobile toggled
         $id('restaurant-page-site').src = `./components/restaurants/${ this.page }/${ this.page }-site-mobile.png`;
         $id('restaurant-page-site').style = 'width: auto; height: 800px; display: block; margin: auto';
         $id('restaurant-page-site-container').style.margin = 'margin: 0px 30px;';
       }
-      // if desktop toggled
-      else {
+      else { // if desktop toggled
         $id('restaurant-page-site').src = `./components/restaurants/${ this.page }/${ this.page }-site-desktop.png`;
         $id('restaurant-page-site').style = 'width: 100%';
         $id('restaurant-page-site-container').style.margin = 'margin: 0px 30px;';        
@@ -68,7 +69,10 @@ export class RestaurantPage {
               <i class="fa fa-desktop" aria-hidden="true" style="z-index: 1; transform: translate(-101px, -8px); font-size: 2em; pointer-events: none;"></i>
               <i class="fa fa-mobile" aria-hidden="true" style="z-index: 1; transform: translate(-80px, -5px); font-size: 3em; pointer-events: none;"></i>
             </div>
-            <h3 id="toggle-demo">Show<div class="logo-small"></div></h3>
+            <h3 id="toggle-demo">
+              <div id="toggle-demo-text">HIDE</div>
+              <div class="logo-small"></div>
+            </h3>
           </div>
         </div>
         <div id="restaurant-page-site-container">

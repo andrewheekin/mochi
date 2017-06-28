@@ -16,7 +16,10 @@ export class RestaurantPage {
     this.navbar.init();
 
     // copy the script src when clicked
-    $id('copy-script-btn').onclick = () => {}  
+    $id('copy-script-btn').onclick = () => {}
+
+    // Show/hide popup based on toggle click
+    $id('toggle-button').onclick = () => {}    
 
     // monitor the desktop vs mobile toggle and show the right screenshot
     $id('responsive-toggle').onchange = (e) => {

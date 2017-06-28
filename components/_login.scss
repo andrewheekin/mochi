@@ -67,11 +67,13 @@
 }
 
 #login-button {
+  display: flex;
+  justify-content: center;
+  align-items: center;
   background: #e3516c;
   border: none;
   border-radius: 6px;
   margin-top: 30px;
-  padding: 11px 24px;
   font-size: 1em;  
   transition: background-color 0.3s;
   -webkit-transition: background-color 0.3s;
@@ -93,6 +95,15 @@
   &:focus {
     outline: none;
   }
+}
+
+#login-spinner {
+  display: none;
+  margin-right: 10px;
+}
+
+#login-text {
+  padding: 11px 0px;
 }
 
 .pass-reqs {

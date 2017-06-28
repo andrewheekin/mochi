@@ -35,14 +35,14 @@ export class MochiboxDemo {
 
     $id('toggle-demo').onclick = () => { // Show/hide popup based on toggle click
       console.log('clicked toggle demo', $id('toggle-demo').textContext)
-      // this.showPopup();
+      this.showPopup();
       if ($id('toggle-demo').textContext == 'Show') this.showPopup();
       else if ($id('toggle-demo').textContext == 'Hide') this.hidePopup();
     }
   }
 
   showPopup() {
-    console.log('show popup', $id('toggle-demo').textContext);    
+    console.log('clicked show popup', $id('toggle-demo').textContext);    
     $id('popup').style.display = 'block';
     setTimeout(() => {  // display the popup onload
       $id('popup').style.opacity = '1';
@@ -53,7 +53,7 @@ export class MochiboxDemo {
   }
 
   hidePopup() {
-    console.log('hide popup', $id('toggle-demo').textContext);
+    console.log('clicked hide popup', $id('toggle-demo').textContext);        
     $id('popup').style.display = 'none';
     $id('popup').style.opacity = '0';
     $id('popup').style.paddingTop = '100px'; // this resets the padding if the popup will be displayed again

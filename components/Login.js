@@ -17,8 +17,9 @@ export class Login {
     this.navbar.init();
 
     $id('login-button').onclick = () => {
-      $id('login-button').textContent = 'logging in...';
+      $id('login-text').innerText = 'logging in...';
       $id('login-button').style.background = '#db9aa6';
+      $id('login-spinner').style.display = 'inline-block';
       state.auth.username = $id('login-restaurant').value.trim();
       this.handleLogin(state.auth.username, $id('login-password').value.trim());
     }
@@ -115,13 +116,15 @@ export class Login {
       state.auth.user = state.auth.userPool.getCurrentUser(); // not async
       console.log('Login success!', state);
       router.navigate(`/restaurant/${state.auth.user.username}`);  // username is the same as the page route
-      $id('login-button').textContent = 'login';
+      $id('login-text').innerText = 'login';
       $id('login-button').style.background = '#e3516c';
+      $id('login-spinner').style.display = 'none';      
     }
     catch(e) {
       throw new Error('Login fail! ' + e);
-      $id('login-button').textContent = 'login';
-      $id('login-button').style.background = '#e3516c';      
+      $id('login-text').innerText = 'login';
+      $id('login-button').style.background = '#e3516c';
+      $id('login-spinner').style.display = 'none';         
     }
   }
 
@@ -166,7 +169,10 @@ export class Login {
           <input id="login-restaurant" class="login-input" type="text" placeholder="Restaurant...">
           <input id="login-password" class="login-input" type="password" placeholder="Password...">
           <div class="pass-reqs"><sup>*</sup>8 characters min, a number, an upper and lowercase letter...</div>
-          <button id="login-button">login</button>
+          <button id="login-button">
+            <img id="login-spinner" src="./img/spinner.svg">
+            <div id="login-text">login</div>
+          </button>
           <div class="register-request">To register, contact <a href="mailto:andrew@mochibox.io">andrew@mochibox.io</a></div>          
           <!--
           <input id="register-restaurant" type="text" placeholder="restaurant">

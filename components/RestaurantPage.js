@@ -15,6 +15,9 @@ export class RestaurantPage {
     this.mochiboxDemo.init();
     this.navbar.init();
 
+    // copy the script src when clicked
+    $id('copy-script-btn').onclick = () => {}  
+
     // monitor the desktop vs mobile toggle and show the right screenshot
     $id('responsive-toggle').onchange = (e) => {
       // if mobile toggled
@@ -42,7 +45,10 @@ export class RestaurantPage {
         </div>
         <div class="restaurant-page-popup-settings">
           <div class="row-1-settings">
-            <div></div>
+            <div class="copy-container">
+              <h3 id="copy-script-btn">Copy</h3>
+              <input class="copy-script" type="text" value="${ `https://mochibox.io/spiritsOf76.min.js` }">
+            </div>
           </div>
           <div class="row-2-settings">
             <!--
@@ -59,7 +65,7 @@ export class RestaurantPage {
               <i class="fa fa-desktop" aria-hidden="true" style="z-index: 1; transform: translate(-101px, -8px); font-size: 2em; pointer-events: none;"></i>
               <i class="fa fa-mobile" aria-hidden="true" style="z-index: 1; transform: translate(-80px, -5px); font-size: 3em; pointer-events: none;"></i>
             </div>
-            <h3 class="toggle-demo">Show<div class="logo-small"></div></h3>
+            <h3 id="toggle-demo">Show<div class="logo-small"></div></h3>
           </div>
         </div>
         <div id="restaurant-page-site-container">

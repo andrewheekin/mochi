@@ -8,6 +8,7 @@ export class MochiboxDemo {
 
   init() {
     this.render();
+    this.showPopup();
 
     $id('popup').onclick = (e) => { // hide popup if the user clicks outside it
       if (e.target == $id('popup')) this.hidePopup();
@@ -22,37 +23,42 @@ export class MochiboxDemo {
       $id('thanks-label').style.display = 'block';
     }
 
+    document.onkeydown = (e) => {
+      switch(e.keyCode) {
+        case 27: // press esc to close popup
+          this.hidePopup(); break;
+        case 13: // press enter to submit email
+          goBtn.click(); break;
+      }
+    };
+
+
+    $id('toggle-demo').onclick = () => { // Show/hide popup based on toggle click
+      console.log('clicked toggle demo', $id('toggle-demo').textContext)
+      // this.showPopup();
+      if ($id('toggle-demo').textContext == 'Show') this.showPopup();
+      else if ($id('toggle-demo').textContext == 'Hide') this.hidePopup();
+    }
+  }
+
+  showPopup() {
+    console.log('show popup', $id('toggle-demo').textContext);    
+    $id('popup').style.display = 'block';
     setTimeout(() => {  // display the popup onload
       $id('popup').style.opacity = '1';
       $id('popup').style.paddingTop = '120px';
       // emailIpt.focus();   // put the cursor in the email input
     }, 50);
-
-    document.onkeydown = (e) => {
-      switch(e.keyCode) {
-        case 49: // press 1 to re-display popup
-          popup.style.display = 'block';
-          setTimeout(() => {
-            popup.style.opacity = '1';
-            popup.style.paddingTop = '120px';
-            // put the cursor in the email input    
-            // emailIpt.focus();
-          }, 50);
-          break;
-        case 27: // press esc to close popup
-          this.hidePopup();
-          break;
-        case 13: // press enter to submit email
-          goBtn.click();
-          break;
-      }
-    };    
+    $id('toggle-demo').textContext = 'Hide';
   }
 
   hidePopup() {
+    console.log('hide popup', $id('toggle-demo').textContext);
     $id('popup').style.display = 'none';
     $id('popup').style.opacity = '0';
-    $id('popup').style.paddingTop = '100px'; // this resets the padding if the popup will be displayed again      
+    $id('popup').style.paddingTop = '100px'; // this resets the padding if the popup will be displayed again
+    // adjust toggle demo button
+    $id('toggle-demo').textContext = 'Show';
   }
 
   render() {

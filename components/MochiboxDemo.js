@@ -10,9 +10,9 @@ export class MochiboxDemo {
     this.render();
     this.showPopup();
 
-    $id('popup').onclick = (e) => { // hide popup if the user clicks outside it
-      if (e.target == $id('popup')) this.hidePopup();
-    }
+    // $id('popup').onclick = (e) => { // hide popup if the user clicks outside it
+    //   if (e.target == $id('popup')) this.hidePopup();
+    // }
 
     //close popup on x click
     $id('close-btn').onclick = () => this.hidePopup();
@@ -34,42 +34,40 @@ export class MochiboxDemo {
   }
 
   showPopup() {
-    $id('popup').style.display = 'block';
+    // $id('popup').style.display = 'block';
     setTimeout(() => {  // display the popup onload
-      $id('popup').style.opacity = '1';
-      $id('popup').style.paddingTop = '120px';
+      $id('content').style.opacity = '1';
+      // $id('popup').style.paddingTop = '120px';
       // emailIpt.focus();   // put the cursor in the email input
     }, 50);
     $id('toggle-demo-text').innerText = 'HIDE';
   }
 
   hidePopup() {
-    $id('popup').style.display = 'none';
-    $id('popup').style.opacity = '0';
-    $id('popup').style.paddingTop = '100px'; // this resets the padding if the popup will be displayed again
+    // $id('popup').style.display = 'none';
+    $id('content').style.opacity = '0';
+    // $id('popup').style.paddingTop = '100px'; // this resets the padding if the popup will be displayed again
     // adjust toggle demo button
     $id('toggle-demo-text').innerText = 'SHOW';
   }
 
   render() {
     let html = `
-      <div id="popup">
-        <div id="content">
-          <span id="close-btn">&times</span>
-          <div id="popup-text-container">
-            <textarea id="popup-text-line-1" class="popup-text" rows="1">Enter your email</textarea>
-            <br><hr style="color:white;">
-            <textarea id="popup-text-line-2" class="popup-text">For half-off breakfast</textarea>
-            <img id="restaurant-logo" src="http://localhost:8080/components/restaurants/${ this.restaurant }/${ this.restaurant }-logo.png">
-            <input id="email-ipt" type="text" placeholder="name@email.com">
-            <button id="go-btn">GO</button>
-            <div id="thanks-label">Thanks</div>
-          </div>
-          <img id="popup-img" src="http://localhost:8080/components/restaurants/${ this.restaurant }/${ this.restaurant }-food.jpg">
+      <div id="content">
+        <span id="close-btn">&times</span>
+        <div id="popup-text-container">
+          <textarea id="popup-text-line-1" class="popup-text" rows="1">Enter your email</textarea>
+          <br><hr style="color:white;">
+          <textarea id="popup-text-line-2" class="popup-text">For half-off breakfast</textarea>
+          <img id="restaurant-logo" src="http://localhost:8080/components/restaurants/${ this.restaurant }/${ this.restaurant }-logo.png">
+          <input id="email-ipt" type="text" placeholder="name@email.com">
+          <button id="go-btn">GO</button>
+          <div id="thanks-label">Thanks</div>
         </div>
+        <img id="popup-img" src="http://localhost:8080/components/restaurants/${ this.restaurant }/${ this.restaurant }-food.jpg">
       </div>
     `;
 
-    $id('restaurant-page-site-container').innerHTML += html;
+    $id('mochibox-demo-popup').innerHTML = html;
   }
 }

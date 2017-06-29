@@ -28,13 +28,15 @@ export class RestaurantPage {
     $id('responsive-toggle').onchange = (e) => {
       if ($id('responsive-toggle').checked) { // if mobile toggled
         $id('restaurant-page-site').src = `./components/restaurants/${ this.page }/${ this.page }-site-mobile.png`;
-        $id('restaurant-page-site').style = 'width: auto; height: 800px; display: block; margin: auto';
-        $id('restaurant-page-site-container').style.margin = 'margin: 0px 30px;';
+        $id('restaurant-page-site').style = 'width: auto; height: 800px;';
+        // $id('popup').style.height = '800px';
+        // $id('popup').style.width = 'auto';
       }
       else { // if desktop toggled
         $id('restaurant-page-site').src = `./components/restaurants/${ this.page }/${ this.page }-site-desktop.png`;
         $id('restaurant-page-site').style = 'width: 100%';
-        $id('restaurant-page-site-container').style.margin = 'margin: 0px 30px;';        
+        // $id('popup').style.height = '100%';
+        // $id('popup').style.width = '100%';
       }
     }
   }
@@ -76,7 +78,10 @@ export class RestaurantPage {
           </div>
         </div>
         <div id="restaurant-page-site-container">
-          <img id="restaurant-page-site" src="./components/restaurants/${ this.page }/${ this.page }-site-desktop.png">
+          <div id="restaurant-page-site-content">
+            <img id="restaurant-page-site" src="./components/restaurants/${ this.page }/${ this.page }-site-desktop.png">
+            <div id="mochibox-demo-popup"></div>
+          </div>
         </div>
         <!-- footer here, with css:
           width: 100%;

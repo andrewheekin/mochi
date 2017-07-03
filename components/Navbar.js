@@ -12,14 +12,9 @@ export class Navbar {
     router.resolve();
     Login.getCurrentUser();  // update the user in the state object
 
-    if (window.location.pathname == '/' || window.location.pathname == '/home') { // 3 links on home mobile nav
-      $cl('mobile-nav')[0].onclick = () => this.closeMobileNav();
-      $cl('mobile-nav')[1].onclick = () => this.closeMobileNav();
-      $cl('mobile-nav')[2].onclick = () => this.closeMobileNav();
-    }
-    else if (window.location.pathname == '/login' || window.location.pathname.includes('/restaurant')) { // only 2 links on other mobile navs
-      $cl('mobile-nav')[0].onclick = () => this.closeMobileNav();
-      $cl('mobile-nav')[1].onclick = () => this.closeMobileNav();
+    // close link when mobile nav is clicked
+    for (var i=0; i<$cl('mobile-nav').length; i++) {
+      $cl('mobile-nav')[i].onclick = () => this.closeMobileNav();
     }
 
     // close the mobile nav menu when a link is clicked
@@ -34,9 +29,9 @@ export class Navbar {
     $on('scroll', throttle(() => this.checkScroll(), 100));  // and on scroll, duh
 
     if (state.auth.user) {  // init for logged in user
-      $id('nav-logout').onclick = () => Login.logout();      
+      $id('nav-logout').onclick = () => Login.logout();
     }
-    else {  }// init for no logged in user
+    else {  }// init for logged out user
 
   }
 
@@ -136,7 +131,7 @@ export class Navbar {
   renderLoggedInMobile() {
     let html = `
       <a class="mobile-nav" href="/restaurant/${state.auth.user.username}">Hello, ${state.auth.user.username}</a>
-      <a id="nav-logout" class="mobile-nav" href="/home" data-navigo>Logout</a>
+      <a id="nav-logout" class="mobile-nav" data-navigo>Logout</a>
     `;
 
     if (window.location.pathname == '/' || window.location.pathname == '/home') { // add "about" when on home

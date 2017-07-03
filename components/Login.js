@@ -20,6 +20,7 @@ export class Login {
       $id('login-text').innerText = 'logging in...';
       $id('login-button').style.background = '#db9aa6';
       $id('login-spinner').style.display = 'inline-block';
+      $id('login-button').style.pointerEvents = 'none';   // disable clicking the login button again  
       state.auth.username = $id('login-restaurant').value.trim();
       this.handleLogin(state.auth.username, $id('login-password').value.trim());
     }
@@ -35,11 +36,7 @@ export class Login {
     //   this.confirmSignup(state.auth.user, state.auth.confcode, state.auth.username, $id('register-password').value);
     // }
 
-    // $id('logout').onclick = () => this.logout();   
-
-    // press 1 to see the state
-    document.onkeydown = (e) => { if (e.keyCode == 49) console.log('state: ', state); }
-
+    // $id('logout').onclick = () => this.logout();
   }
 
 
@@ -69,9 +66,23 @@ export class Login {
   }  
 
   static getCurrentUser() {
-    state.auth.user = state.auth.userPool.getCurrentUser()
+    state.auth.user = state.auth.userPool.getCurrentUser();
     return state.auth.user;
-  }  
+  }
+
+  static getUserToken() { // must call from an async/await function
+    return new Promise((resolve, reject) => {
+      state.auth.userPool.getCurrentUser().getSession(function(err, session) {
+        if (err) { reject(err); return; }
+        resolve(session.getIdToken().getJwtToken());
+      });
+    });
+  }
+
+  static async updateUserToken() {
+    state.auth.userToken = await Login.getUserToken();
+    return state.auth.userToken;
+  }
 
   async createUser(username, password) {
     try {
@@ -100,7 +111,7 @@ export class Login {
   //   try {
   //     let confirmation = await this.confirm(user, confirmationCode);
   //     console.log('confirmation: ', confirmation);
-  //     state.auth.token = await this.authenticate(user, username, password);
+  //     state.auth.userToken = await this.authenticate(user, username, password);
   //     console.log('userToken: ', state);
   //   }
   //   catch(e) {
@@ -142,7 +153,8 @@ export class Login {
       // set button back to original text/color
       $id('login-text').innerText = 'login';
       $id('login-button').style.background = '#e3516c';
-      $id('login-spinner').style.display = 'none';        
+      $id('login-spinner').style.display = 'none'; 
+      $id('login-button').style.pointerEvents = 'auto';   // re-enable clicking the login button
       throw new Error('Login fail! ' + e);       
     }
   }
@@ -165,7 +177,7 @@ export class Login {
       state.auth.user.signOut();
       state.auth.user = null;
       router.navigate('/home');
-    }    
+    }
   }
 
   renderLoggedOut() {

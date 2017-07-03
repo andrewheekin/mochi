@@ -1,5 +1,5 @@
 // press 1 to show popup, click outside the popup to hide it
-// let js = document.createElement("script"); js.src = "http://localhost:8080/mochiboxes/spirits76/mochibox-spirits76.js"; document.body.appendChild(js);
+// let js = document.createElement("script"); js.src = "https://mochibox.io/mochiboxes/spirits76/mochibox-spirits76.js"; document.body.appendChild(js);
 
 let popup = document.createElement('div');
 // hide popup if the user clicks outside it
@@ -85,7 +85,7 @@ popupText.style = `
 
 
 let restaurantLogo = document.createElement('img');
-restaurantLogo.src = 'http://localhost:8080/mochiboxes/spirits76/logo.png';
+restaurantLogo.src = 'https://mochibox.io/mochiboxes/spirits76/logo.png';
 restaurantLogo.style = `
   width: 58%;
   margin: 15px 0px;
@@ -93,7 +93,7 @@ restaurantLogo.style = `
 
 
 let popupImg = document.createElement('img');
-popupImg.src = 'http://localhost:8080/mochiboxes/spirits76/food.jpg';
+popupImg.src = 'https://mochibox.io/mochiboxes/spirits76/food.jpg';
 popupImg.style = `
   z-index: 10;
   pointer-events: none;

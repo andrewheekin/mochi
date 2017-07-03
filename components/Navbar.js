@@ -12,6 +12,9 @@ export class Navbar {
     router.resolve();
     Login.getCurrentUser();  // update the user in the state object
 
+    // press 1 to see the state
+    document.onkeydown = (e) => { if (e.keyCode == 49) console.log('state: ', state); }    
+
     // close link when mobile nav is clicked
     for (var i=0; i<$cl('mobile-nav').length; i++) {
       $cl('mobile-nav')[i].onclick = () => this.closeMobileNav();

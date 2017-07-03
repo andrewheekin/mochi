@@ -1,6 +1,8 @@
 import { $id, $cl } from '../js/util';
 import { MochiboxDemo } from './MochiboxDemo';
 import { Navbar } from './Navbar';
+import { invokeApig } from '../js/awsLib';
+
 
 export class RestaurantPage {
   constructor(name) {
@@ -17,6 +19,13 @@ export class RestaurantPage {
 
     // copy the script src when clicked
     $id('copy-script-btn').onclick = () => {}
+
+    $id('save-and-publish').onclick = () => {
+      this.saveMochibox({
+        content: 'hey whatsup hello',
+        attachment: null,
+      });
+    }
 
     // Show/hide popup based on toggle click
     $id('toggle-demo').onclick = () => {
@@ -39,6 +48,42 @@ export class RestaurantPage {
     }
   }
 
+  // async handleSubmit(event) {
+  //   event.preventDefault();
+
+  //   if (this.file && this.file.size > config.MAX_ATTACHMENT_SIZE) {
+  //     alert('Please pick a file smaller than 5MB');
+  //     return;
+  //   }
+
+  //   this.setState({ isLoading: true });
+
+  //   try {
+  //     const uploadedFilename = (this.file)
+  //       ? (await s3Upload(this.file, this.props.userToken)).Location
+  //       : null;
+
+  //     await this.createNote({
+  //       content: this.state.content,
+  //       attachment: uploadedFilename,
+  //     });
+  //     this.props.history.push('/');
+  //   }
+  //   catch(e) {
+  //     alert(e);
+  //     this.setState({ isLoading: false });
+  //   }
+
+  // }
+
+  saveMochibox(note) {
+    return invokeApig({
+      path: '/mochibox',
+      method: 'POST',
+      body: note,
+    });
+  }  
+
   render() {
     let html = `
       ${ this.navbar.render() }
@@ -55,12 +100,7 @@ export class RestaurantPage {
             </div>
           </div>
           <div class="row-2-settings">
-            <!--
-            <div class="popup-text-container">
-              <h3 class="popup-text-label">TEXT:</h3><input id="popup-text" placeholder="Mochibox text goes here...">
-            </div>
-            -->
-            <h3 class="save-and-publish">Save & Publish</h3>
+            <h3 id="save-and-publish">Save & Publish</h3>
             <div class="toggle-container">
               <label class="switch">
                 <input id="responsive-toggle" type="checkbox">

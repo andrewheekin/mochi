@@ -10,7 +10,7 @@ export default {
   auth: {
     user: null,
     userPool: userPool,
-    token: null,
+    userToken: null,
     username: null,
     confcode: null,
   }

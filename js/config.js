@@ -4,7 +4,7 @@ export default {
     BUCKET: 'mochibox-uploads'
   },
   apiGateway: {
-    URL: '',
+    URL: 'https://gvfebshb2a.execute-api.us-east-1.amazonaws.com/prod',
   },
   cognito: {
     USER_POOL_ID : 'us-east-1_bxV6wia2E',

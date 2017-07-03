@@ -15,12 +15,22 @@ module.exports = {
     umdNamedDefine: true
   },
   module: {
-    loaders: [{
-      test: /\.js$/,
-      loader: 'babel-loader',
-      exclude: /node_modules/,
-      query: { presets: ['es2015', 'stage-0'] }  // es2015 allows ES6, stage-0 preset allows ES7
-    }],
+    loaders: [
+      {
+        test: /\.js$/,
+        loader: 'babel-loader',
+        exclude: /node_modules/,
+        query: { presets: ['es2015', 'stage-0'] }  // es2015 allows ES6, stage-0 preset allows ES7
+      },
+      // { //DIDN'T WORK, AS FAR AS I GOT. RUN npm install --save image-webpack-loader file-loader 
+      //   // image loader (also requires the file loader), to use things line background-img in CSS
+      //   test: /\.(jpe?g|png|gif|svg)$/i,
+      //   loaders: [
+      //     'file?hash=sha512&digest=hex&name=[hash].[ext]',
+      //     'image-webpack?bypassOnDebug&optimizationLevel=7&interlaced=false'
+      //   ]
+      // }
+    ],
     rules: [{
       test: /\.scss$/,
       use: extractSass.extract({

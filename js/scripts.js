@@ -16,9 +16,9 @@ let login = new Login();
 // let router = new Navigo(null, true, '#!'); // using hash
 let router = new Navigo(null, false); // using HTML5 History API
 
-// restaurant page route with before hook
+// restaurant page route with before hook to authenticate the user
 router.on('restaurant/:name', (params) => { let restaurantPage = new RestaurantPage(params.name); restaurantPage.init(); },
-              { before: (done, params) => { authenticate(done, params) }});
+              { before: (done, params) => { Login.checkAuth(done, params) }});
 
 // login page route with before hook
 router.on('login', () => { login.init() },
@@ -40,32 +40,5 @@ router.on(() => { splashSite.init() });
 router.notFound((query) => { router.navigate('/home'); console.log('page not found'); })
 
 router.resolve();
-
-function authenticate(done, params) {
-
-  let cognitoUser = state.auth.userPool.getCurrentUser();
-  console.log('cognitoUser: ', cognitoUser);
-
-  if (cognitoUser != null) {
-    cognitoUser.getSession((err, session) => {
-      if (err) throw new Error(err);
-      else if (session.isValid()) {
-        if (cognitoUser.username == params.name) done(); // restaurant user accesses their page
-        else { // a user is logged in but tries to access a page that isn't theirs, redirects to theirs
-          done(false);
-          router.navigate(`/restaurant/${cognitoUser.username}`);  // username is the same as the page route
-        }
-      }
-      else {  // user exists but session not valid...?
-        done(false);
-        router.navigate('/login');
-      }
-    });
-  }
-  else {  // when cognitoUser is null, prevent the handler from resolving and redirect to login
-    done(false);
-    router.navigate('/login');
-  }
-}
 
 export { router };

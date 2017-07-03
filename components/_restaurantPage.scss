@@ -28,11 +28,14 @@
 }
 
 #restaurant-page-site-content {
-
+  background: black;
+  border-radius: 4px;  
 }
 
 #restaurant-page-site {
   width: 100%;
+  border-radius: 4px;  
+  transition: opacity .3s ease;  
 }
 
 .row-1-settings {
@@ -223,6 +226,20 @@ input:checked + .slider:before {
   transform: translateX(51px);
 }
 /* end toggle switch */
+
+.desktop-toggle-icon {
+  z-index: 1;
+  transform: translate(-101px, -8px);
+  font-size: 2em!important;
+  pointer-events: none;
+}
+
+.mobile-toggle-icon {
+  z-index: 1;
+  transform: translate(-80px, -5px);
+  font-size: 3em!important;
+  pointer-events: none;
+}
 
 .copy-container {
   display: flex;

@@ -10,9 +10,9 @@ export class MochiboxDemo {
     this.render();
     this.showPopup();
 
-    // $id('popup').onclick = (e) => { // hide popup if the user clicks outside it
-    //   if (e.target == $id('popup')) this.hidePopup();
-    // }
+    $id('restaurant-page-site').onclick = (e) => { // hide popup if the user clicks outside it
+      if (e.target == $id('restaurant-page-site')) this.hidePopup(); // e.target means the top level div id, so not the popup itself
+    }
 
     //close popup on x click
     $id('close-btn').onclick = () => this.hidePopup();
@@ -34,19 +34,19 @@ export class MochiboxDemo {
   }
 
   showPopup() {
-    // $id('popup').style.display = 'block';
-    setTimeout(() => {  // display the popup onload
+    $id('restaurant-page-site').style.opacity = '.5';
+    setTimeout(() => { // wait for DOM elements to load
       $id('content').style.opacity = '1';
-      // $id('popup').style.paddingTop = '120px';
-      // emailIpt.focus();   // put the cursor in the email input
+      $id('content').style.transform = 'translateY(0px)';      
+      // emailIpt.focus(); // put the cursor in the email input
     }, 50);
     $id('toggle-demo-text').innerText = 'HIDE';
   }
 
   hidePopup() {
-    // $id('popup').style.display = 'none';
     $id('content').style.opacity = '0';
-    // $id('popup').style.paddingTop = '100px'; // this resets the padding if the popup will be displayed again
+    $id('content').style.transform = 'translateY(-30px)';    
+    $id('restaurant-page-site').style.opacity = '1';     
     // adjust toggle demo button
     $id('toggle-demo-text').innerText = 'SHOW';
   }
@@ -64,7 +64,9 @@ export class MochiboxDemo {
           <button id="go-btn">GO</button>
           <div id="thanks-label">Thanks</div>
         </div>
-        <img id="popup-img" src="http://localhost:8080/components/restaurants/${ this.restaurant }/${ this.restaurant }-food.jpg">
+        <div id="popup-img-container">
+          <img id="popup-img" src="http://localhost:8080/components/restaurants/${ this.restaurant }/${ this.restaurant }-food.jpg">
+        </div>
       </div>
     `;
 

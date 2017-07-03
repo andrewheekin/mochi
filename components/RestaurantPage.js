@@ -28,15 +28,13 @@ export class RestaurantPage {
     $id('responsive-toggle').onchange = (e) => {
       if ($id('responsive-toggle').checked) { // if mobile toggled
         $id('restaurant-page-site').src = `./components/restaurants/${ this.page }/${ this.page }-site-mobile.png`;
-        $id('restaurant-page-site').style = 'width: auto; height: 800px;';
-        // $id('popup').style.height = '800px';
-        // $id('popup').style.width = 'auto';
+        $id('restaurant-page-site').style.width = 'auto';
+        $id('restaurant-page-site').style.height = '800px';
       }
       else { // if desktop toggled
         $id('restaurant-page-site').src = `./components/restaurants/${ this.page }/${ this.page }-site-desktop.png`;
-        $id('restaurant-page-site').style = 'width: 100%';
-        // $id('popup').style.height = '100%';
-        // $id('popup').style.width = '100%';
+        $id('restaurant-page-site').style.width = '100%';
+        $id('restaurant-page-site').style.height = 'auto';
       }
     }
   }
@@ -68,8 +66,8 @@ export class RestaurantPage {
                 <input id="responsive-toggle" type="checkbox">
                 <div class="slider"></div>
               </label>
-              <i class="fa fa-desktop" aria-hidden="true" style="z-index: 1; transform: translate(-101px, -8px); font-size: 2em; pointer-events: none;"></i>
-              <i class="fa fa-mobile" aria-hidden="true" style="z-index: 1; transform: translate(-80px, -5px); font-size: 3em; pointer-events: none;"></i>
+              <i class="fa fa-desktop desktop-toggle-icon" aria-hidden="true"></i>
+              <i class="fa fa-mobile mobile-toggle-icon" aria-hidden="true"></i>
             </div>
             <h3 id="toggle-demo">
               <div id="toggle-demo-text">HIDE</div>

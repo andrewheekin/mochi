@@ -59,13 +59,13 @@ export class MochiboxDemo {
           <textarea id="popup-text-line-1" class="popup-text" rows="1">Enter your email</textarea>
           <br><hr style="color:white;">
           <textarea id="popup-text-line-2" class="popup-text">For half-off breakfast</textarea>
-          <img id="restaurant-logo" src="./components/restaurants/${ this.restaurant }/${ this.restaurant }-logo.png">
+          <img id="restaurant-logo" src="./img/restaurants/${ this.restaurant }/${ this.restaurant }-logo.png">
           <input id="email-ipt" type="text" placeholder="name@email.com">
           <button id="go-btn">GO</button>
           <div id="thanks-label">Thanks</div>
         </div>
         <div id="popup-img-container">
-          <img id="popup-img" src="./components/restaurants/${ this.restaurant }/${ this.restaurant }-food.jpg">
+          <img id="popup-img" src="./img/restaurants/${ this.restaurant }/${ this.restaurant }-food.jpg">
         </div>
       </div>
     `;

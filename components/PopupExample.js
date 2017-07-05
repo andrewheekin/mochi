@@ -67,37 +67,37 @@ export class PopupExample {
           <span id="dot3" class="dot"></span>
         </div>    
         <div id="slideshow-container">
-          <img class="macbook" src="../img/macbook.png">
+          <img class="macbook" src="./img/macbook.png">
           <div class="my-slides">
-            <img class="popup-background-img" src="../img/skybar.jpg">
+            <img class="popup-background-img" src="./img/skybar.jpg">
             <div class="popup-content">
               <span class="close-popup-bucket">&times;</span>
               <div class="beer-bucket-text">Half off buckets
                 <br><hr style="color:white;">
                 Today to Friday
-                <img class="restaurant-logo" src="../img/restaurant-logo.gif">
+                <img class="restaurant-logo" src="./img/restaurant-logo.gif">
               </div>
-              <img class="beer-bucket-img" src="../img/beer.jpg">
+              <img class="beer-bucket-img" src="./img/beer.jpg">
             </div>
           </div>        
           <div class="my-slides">
-            <img class="popup-background-img" src="../img/brick.jpg">
+            <img class="popup-background-img" src="./img/brick.jpg">
             <div class="popup-content" style="flex-direction:column">
               <span class="close-popup-burger">&times;</span>
               <div class="burger-text">The porch is open!
                 <div class="burger-sub-text">$5 Drafts, $5 Burgers</div>
-                <img class="burger-restaurant-logo" src="../img/burger-restaurant-logo.gif">              
+                <img class="burger-restaurant-logo" src="./img/burger-restaurant-logo.gif">              
               </div>
-              <img class="burger-img" src="../img/burger.jpg">
+              <img class="burger-img" src="./img/burger.jpg">
             </div>
           </div>
           <div class="my-slides">
-            <img class="popup-background-img" src="../img/garlic.jpg">
+            <img class="popup-background-img" src="./img/garlic.jpg">
             <div class="popup-content">
               <span class="close-popup-soup">&times;</span>
-              <img class="soup-img" src="../img/soup.jpg">
+              <img class="soup-img" src="./img/soup.jpg">
               <div class="soup-text">Our seasonal menu is here
-                <img class="soup-restaurant-logo" src="../img/soup-restaurant-logo.gif">
+                <img class="soup-restaurant-logo" src="./img/soup-restaurant-logo.gif">
               </div>
             </div>
           </div>

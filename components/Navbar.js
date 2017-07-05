@@ -86,7 +86,7 @@ export class Navbar {
       </a>
       <a class="nav-item" href="/restaurant/${state.auth.user.username}">
         <h3 class="nav-item" style="padding-right:10px">Hello, ${state.auth.user.username}</h3>
-        <img class="nav-logo" src="./components/restaurants/${state.auth.user.username}/${state.auth.user.username}-logo.png">
+        <img class="nav-logo" src="./img/restaurants/${state.auth.user.username}/${state.auth.user.username}-logo.png">
       </a>
     `;
 

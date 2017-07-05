@@ -6,7 +6,7 @@ export class FrontPage {
   render() {
     let html = `
       <div id="front-page">
-        <img class="front-img" src="../img/restaurant3.jpg">
+        <img class="front-img" src="./img/restaurant3.jpg">
         <div class="main-txt">
           <h1 class="tagline">Keep customers up-to-date.</h1>
           <!-- <h3 class="slogan-description">Make announcements, update specials on your website as often as you want with a mochi box</h3> -->

@@ -36,12 +36,12 @@ export class RestaurantPage {
     // monitor the desktop vs mobile toggle and show the right screenshot
     $id('responsive-toggle').onchange = (e) => {
       if ($id('responsive-toggle').checked) { // if mobile toggled
-        $id('restaurant-page-site').src = `./components/restaurants/${ this.page }/${ this.page }-site-mobile.png`;
+        $id('restaurant-page-site').src = `./img/restaurants/${ this.page }/${ this.page }-site-mobile.png`;
         $id('restaurant-page-site').style.width = 'auto';
         $id('restaurant-page-site').style.height = '800px';
       }
       else { // if desktop toggled
-        $id('restaurant-page-site').src = `./components/restaurants/${ this.page }/${ this.page }-site-desktop.png`;
+        $id('restaurant-page-site').src = `./img/restaurants/${ this.page }/${ this.page }-site-desktop.png`;
         $id('restaurant-page-site').style.width = '100%';
         $id('restaurant-page-site').style.height = 'auto';
       }
@@ -90,7 +90,7 @@ export class RestaurantPage {
       <div id="mochi-background"></div>
       <div id="restaurant-page-content">
         <div class="restaurant-page-logo-container">
-          <img class="restaurant-page-logo" src="./components/restaurants/${ this.page }/${ this.page }-logo.png">
+          <img class="restaurant-page-logo" src="./img/restaurants/${ this.page }/${ this.page }-logo.png">
         </div>
         <div class="restaurant-page-popup-settings">
           <div class="row-1-settings">
@@ -117,7 +117,7 @@ export class RestaurantPage {
         </div>
         <div id="restaurant-page-site-container">
           <div id="restaurant-page-site-content">
-            <img id="restaurant-page-site" src="./components/restaurants/${ this.page }/${ this.page }-site-desktop.png">
+            <img id="restaurant-page-site" src="./img/restaurants/${ this.page }/${ this.page }-site-desktop.png">
             <div id="mochibox-demo-popup"></div>
           </div>
         </div>

@@ -84,7 +84,7 @@ export class Signup {
   render() {
     let html = `
       <div id="signup">
-        <img id="signup-img" src="../img/signup.jpg">
+        <img id="signup-img" src="./img/signup.jpg">
         <div class="signup-container">
           <div class="signup-title">Let's chat.</div>
           <form>

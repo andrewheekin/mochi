@@ -13,7 +13,7 @@ export class Navbar {
     Login.getCurrentUser();  // update the user in the state object
 
     // press 1 to see the state
-    document.onkeydown = (e) => { if (e.keyCode == 49) console.log('state: ', state); }    
+    document.onkeydown = (e) => { if (e.keyCode == 49) console.log('state: ', state); }
 
     // close link when mobile nav is clicked
     for (var i=0; i<$cl('mobile-nav').length; i++) {
@@ -33,8 +33,9 @@ export class Navbar {
 
     if (state.auth.user) {  // init for logged in user
       $id('nav-logout').onclick = () => Login.logout();
+      $id('nav-logout-mobile').onclick = () => Login.logout();
     }
-    else {  }// init for logged out user
+    else {  } // init for logged out user
 
   }
 
@@ -134,7 +135,7 @@ export class Navbar {
   renderLoggedInMobile() {
     let html = `
       <a class="mobile-nav" href="/restaurant/${state.auth.user.username}">Hello, ${state.auth.user.username}</a>
-      <a id="nav-logout" class="mobile-nav" data-navigo>Logout</a>
+      <a id="nav-logout-mobile" class="mobile-nav" href="/home">Logout</a>
     `;
 
     if (window.location.pathname == '/' || window.location.pathname == '/home') { // add "about" when on home

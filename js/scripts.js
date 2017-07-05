@@ -22,7 +22,7 @@ router.on('restaurant/:name', (params) => { let restaurantPage = new RestaurantP
 
 // login page route with before hook
 router.on('login', () => { login.init() },
-     { before: (done) => {
+     { before: (done) => { // if user is already logged in, go to their page
         if (Login.getCurrentUser()) { done(false); router.navigate(`/restaurant/${state.auth.user.username}`) }
         else done(); }});
 

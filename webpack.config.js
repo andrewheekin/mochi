@@ -6,7 +6,7 @@ var extractSass = new ExtractTextPlugin({filename: 'css/bundle.css'});
 
 module.exports = {
   entry: ['./js/scripts.js', './css/main.scss'],
-  devtool: 'inline-source-map',
+  devtool: 'cheap-module-source-map',
   output: {
     publicPath: '/build/',  // path to use in index.html  
     path: __dirname + '/build',  // output path webpack will use

@@ -1,4 +1,4 @@
-import { $id, $cl } from '../js/util';
+import { $id, $cl, $copy } from '../js/util';
 import { MochiboxDemo } from './MochiboxDemo';
 import { Navbar } from './Navbar';
 import { invokeApig } from '../js/awsLib';
@@ -18,7 +18,7 @@ export class RestaurantPage {
     this.navbar.init();
 
     // copy the script src when clicked
-    $id('copy-script-btn').onclick = () => {}
+    $copy('copy-script-btn', 'copy-script');
 
     $id('save-and-publish').onclick = () => {
       this.saveMochibox({
@@ -96,7 +96,8 @@ export class RestaurantPage {
           <div class="row-1-settings">
             <div class="copy-container">
               <h3 id="copy-script-btn">Copy</h3>
-              <input class="copy-script" type="text" value="${ `https://mochibox.io/spiritsOf76.min.js` }">
+              <input id="copy-script" type="text"
+                value="<script>(function(m,o,c,h){h=m.createElement(o);h.src=c+'?v='+(new Date().getTime());m.body.appendChild(h)})(document,'script','https://mochibox.io/mochiboxes/${this.page}/mochibox-${this.page}.js','js')</script>">
             </div>
           </div>
           <div class="row-2-settings">

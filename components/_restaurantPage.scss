@@ -221,12 +221,13 @@ input:checked + .slider:before {
   display: flex;
 }
 
-.copy-script {
+#copy-script {
   font-size: .9em;
-  width: 300px;
+  width: 400px;
   border: none;
   padding: 10px 15px;
   border-radius: 0px 4px 4px 0px;
+  text-overflow: ellipsis;  
   &:focus {
     outline: none;
   }  
@@ -237,7 +238,7 @@ h3#copy-script-btn {
   align-items: center;
   border: none;
   border-radius: 6px 0px 0px 6px;
-  height: 45px;
+  height: 40px;
   padding: 0px 10px;
   font-size: 1em;
   background: #b8b8b8;

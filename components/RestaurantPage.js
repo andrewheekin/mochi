@@ -96,7 +96,7 @@ export class RestaurantPage {
           <div class="row-1-settings">
             <div class="copy-container">
               <h3 id="copy-script-btn">Copy</h3>
-              <input id="copy-script" type="text"
+              <input id="copy-script" type="text" spellcheck="false"
                 value="<script>(function(m,o,c,h){h=m.createElement(o);h.src=c+'?v='+(new Date().getTime());m.body.appendChild(h)})(document,'script','https://mochibox.io/mochiboxes/${this.page}/mochibox-${this.page}.js','js')</script>">
             </div>
           </div>

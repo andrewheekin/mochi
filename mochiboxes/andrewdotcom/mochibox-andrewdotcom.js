@@ -178,7 +178,7 @@
   mgb.onmouseout = () => mgb.style.opacity = 1;
 
 
-  display();
+  // display();
 
 
   document.onkeydown = (e) => {

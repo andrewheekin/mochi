@@ -31,11 +31,11 @@ export class SplashSite {
     smoothScroll();
 
     // init page elements
-    this.popupExample.init();
-    this.signupModal.init();
+    this.navbar.init();    
     this.frontPage.init();
-    this.navbar.init();
+    this.popupExample.init();
     this.signup.init();
+    this.signupModal.init();
   }
 
   render() {

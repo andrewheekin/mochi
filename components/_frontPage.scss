@@ -1,0 +1,25 @@
+#front-page {
+  position: relative;
+  overflow: hidden;  
+  @media #{$mobile-portrait} {
+    height: 667px;
+  }
+  @media #{$desktop} {
+    height: 787px;
+  }
+}
+
+.front-img {
+  position: absolute;
+  @media #{$desktop} {
+    width: 100%;
+    height: auto;
+    // width: auto;
+    // height: 787px;
+  }
+  @media #{$mobile-portrait} {
+    height: auto;    
+    // width: auto;
+    // height: 667px;
+  }
+}
